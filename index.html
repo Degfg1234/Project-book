@@ -87,6 +87,147 @@
   .dot{width:12px;height:12px;border-radius:50%;border:1px solid rgba(255,255,255,.25);flex:none}
   .empty{color:var(--muted);padding:20px;text-align:center;border:1px dashed var(--line);border-radius:var(--radius)}
 
+  /* взяти книгу */
+  .takewrap{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+  .takebtn{cursor:pointer;background:var(--yellow);color:var(--ink);border:none;font-weight:800;
+    font-size:13.5px;padding:10px 18px;border-radius:999px;transition:.12s}
+  .takebtn:hover{background:var(--yellow-soft)}
+  .takenlbl{display:inline-block;background:rgba(34,197,94,.14);border:1px solid rgba(34,197,94,.5);
+    color:#7ee2a4;font-weight:700;font-size:13.5px;padding:9px 16px;border-radius:999px}
+  .returnlink{margin-left:12px;color:var(--muted);font-size:12px;text-decoration:underline;cursor:pointer}
+  .returnlink:hover{color:var(--txt)}
+  .takeform{margin-top:4px;display:flex;flex-direction:column;gap:9px;max-width:380px}
+  .takeform input.tname{background:var(--bg2);border:1px solid var(--line);color:var(--txt);
+    border-radius:10px;padding:11px 13px;font-size:14px}
+  .anon{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:11px;cursor:pointer;user-select:none}
+  .anon input{width:13px;height:13px;accent-color:var(--yellow)}
+  .tbtnrow{display:flex;gap:8px}
+  .tconfirm{cursor:pointer;background:var(--yellow);color:var(--ink);border:none;font-weight:800;font-size:13px;padding:10px 16px;border-radius:999px}
+  .tcancel{cursor:pointer;background:transparent;border:1px solid var(--line);color:var(--muted);font-size:13px;padding:10px 16px;border-radius:999px}
+  .tcancel:hover{color:var(--txt);border-color:var(--yellow)}
+
+  /* додати книгу */
+  .addwrap{text-align:center;margin:34px 0 0}
+  .addbtn{cursor:pointer;background:transparent;border:1px dashed var(--line);color:var(--muted);
+    font-weight:600;font-size:13px;padding:10px 18px;border-radius:999px;transition:.12s}
+  .addbtn:hover{color:var(--yellow);border-color:var(--yellow)}
+  .addpanel{max-width:540px;margin:16px auto 0;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:20px;text-align:left}
+  .addpanel h3{margin:0 0 6px;font-size:19px}
+  .addpanel .hint{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+  .addpanel label{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin:12px 0 0}
+  .addpanel input,.addpanel select,.addpanel textarea{width:100%;margin-top:5px;background:var(--bg2);
+    border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font-size:14px;font-family:inherit}
+  .addpanel textarea{min-height:64px;resize:vertical}
+  .addrow{display:flex;gap:14px}
+  .addrow>div{flex:1}
+  .addbtns{display:flex;gap:10px;margin-top:18px}
+  .f_msg{margin-top:12px;font-size:13.5px;color:#7ee2a4}
+
+  /* панель кнопок + AI помічник */
+  .toolrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:34px 0 0}
+  .aibtn{cursor:pointer;background:var(--yellow);color:var(--ink);border:none;font-weight:800;font-size:14px;padding:12px 22px;border-radius:999px;transition:.12s}
+  .aibtn:hover{background:var(--yellow-soft)}
+  .aipanel{max-width:640px;margin:16px auto 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:left}
+  .aipanel h3{margin:0 0 6px;font-size:19px}
+  .aipanel .hint{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+  .aiinputrow{display:flex;gap:8px;align-items:stretch}
+  .aiinputrow textarea{flex:1;background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:12px;padding:11px 13px;font-size:14px;font-family:inherit;min-height:60px;resize:vertical}
+  .micbtn{flex:none;width:52px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);color:var(--txt);font-size:22px;cursor:pointer;transition:.12s}
+  .micbtn:hover{border-color:var(--yellow);color:var(--yellow)}
+  .micbtn.rec{background:#ef4444;color:#fff;border-color:#ef4444;animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+  .airun{margin-top:12px;cursor:pointer;background:var(--yellow);color:var(--ink);border:none;font-weight:800;font-size:13.5px;padding:11px 20px;border-radius:999px}
+  .aistatus{margin-top:12px;color:var(--muted);font-size:13.5px}
+  .aistatus a{color:var(--yellow-soft)}
+  .aires{margin-top:14px}
+  .aicard{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;display:flex;gap:12px}
+  .aicard .body{flex:1;min-width:0}
+  .aicard .ttl{font-weight:700}
+  .aicard .reason{color:var(--yellow-soft);font-size:13.5px;margin-top:4px}
+  .aicard .meta{color:var(--muted);font-size:12.5px;margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line);color:var(--muted)}
+  .badge.free{color:#7ee2a4;border-color:rgba(34,197,94,.5)}
+  .badge.busy{color:#ffb4b4;border-color:rgba(239,68,68,.5)}
+  .spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--yellow);border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* черга */
+  .queuewrap{margin-top:10px}
+  .qlist{color:var(--muted);font-size:12.5px;margin-bottom:8px}
+  .qbtn{cursor:pointer;background:transparent;border:1px solid var(--line);color:var(--muted);font-size:12.5px;padding:8px 14px;border-radius:999px;transition:.12s}
+  .qbtn:hover{color:var(--yellow);border-color:var(--yellow)}
+
+  /* відгуки */
+  .revwrap{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+  .revhead{font-size:14px;margin:2px 0 8px}
+  .revhead.revmuted{color:var(--muted);font-size:13px}
+  .revstars{color:var(--yellow);letter-spacing:1px}
+  .revitem{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin-bottom:7px;font-size:13.5px}
+  .revtext{color:var(--muted);margin-top:3px}
+  .revtoggle{cursor:pointer;background:transparent;border:1px solid var(--yellow);color:var(--yellow);font-weight:700;font-size:12.5px;padding:8px 14px;border-radius:999px;margin-top:4px}
+  .revtoggle:hover{background:var(--yellow);color:var(--ink)}
+  .revform{margin-top:10px}
+  .revform textarea{background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font-size:14px;font-family:inherit;min-height:54px;resize:vertical}
+  .revform input{background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font-size:14px}
+  .starpick{font-size:26px;color:var(--yellow);cursor:pointer;letter-spacing:3px;user-select:none}
+
+  /* книга тижня */
+  .featured{margin:26px 0 0}
+  .featcard{background:linear-gradient(135deg,rgba(255,212,0,.14),rgba(255,212,0,.03));border:1px solid rgba(255,212,0,.4);
+    border-radius:var(--radius);padding:16px;display:flex;gap:14px}
+  .featbody{flex:1;min-width:0}
+  .featlbl{color:var(--yellow);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+  .feattitle{font-weight:700;font-size:18px;margin:5px 0 2px}
+  .feataut{color:var(--muted);font-weight:400;font-size:14px}
+  .featabout{color:var(--muted);font-size:14px;margin-bottom:10px}
+  .featbtn{cursor:pointer;background:var(--yellow);color:var(--ink);border:none;font-weight:800;font-size:13px;padding:9px 16px;border-radius:999px}
+
+  /* статистика */
+  .statspanel{max-width:560px;margin:16px auto 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .statgrid{display:flex;gap:12px;margin-bottom:12px}
+  .statbox{flex:1;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+  .statn{font-size:26px;font-weight:800;color:var(--yellow)}
+  .statl{color:var(--muted);font-size:12px;margin-top:2px}
+  .statrow{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px}
+  .statrow span{color:var(--muted)}
+  .statrow b{text-align:right}
+  .stathdr{margin:16px 0 6px;color:var(--yellow);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em}
+  .toplist{list-style:none;padding:0;margin:0}
+  .toplist li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:13.5px}
+  .toplist li span:last-child{color:var(--yellow-soft);font-weight:700;white-space:nowrap}
+
+  /* пропозиції / голосування */
+  .kindrow{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px}
+  .kindbtn{cursor:pointer;background:var(--bg2);border:1px solid var(--line);color:var(--muted);padding:9px 13px;border-radius:999px;font-size:13px;font-weight:600}
+  .kindbtn.active{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}
+  .pill-label{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:6px}
+  #prop_text{width:100%;min-height:110px;margin-top:12px;background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:12px;padding:13px 15px;font-size:15.5px;line-height:1.45;font-family:inherit;resize:vertical}
+  #propPanel{max-width:680px}
+  .propboard{max-width:640px;margin:24px auto 0}
+  .propboard h3{font-size:13px;margin:0 0 12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;text-align:center}
+  .propcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
+  .propvote{flex:none;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:52px}
+  .heartbtn{cursor:pointer;background:transparent;border:1px solid var(--line);border-radius:12px;padding:5px 10px;font-size:18px;transition:.12s}
+  .heartbtn:hover{border-color:#ef4444}
+  .heartcount{font-weight:800;color:#ff6b6b;font-size:16px;display:inline-block}
+  .pbody{flex:1;min-width:0}
+  .pk{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .pt{font-weight:600;margin-top:3px}
+  .voteform{margin-top:10px;display:flex;flex-direction:column;gap:8px;max-width:320px}
+  .voteform input{background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:9px 12px;font-size:14px}
+  .flyheart{position:fixed;z-index:9999;font-size:26px;pointer-events:none;transition:transform .6s cubic-bezier(.5,-0.3,.4,1.25),opacity .6s ease}
+  .flybook{position:fixed;z-index:9998;pointer-events:none;font-size:22px;transition:transform 2.1s ease-out,opacity 2.1s ease-out;will-change:transform,opacity}
+  @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.7)}100%{transform:scale(1)}}
+  .heartcount.bump{animation:pop .3s ease}
+
+  /* котик / великодка на банері */
+  .brandwrap{position:relative;display:inline-block;max-width:100%;overflow:visible;touch-action:none;-webkit-user-select:none;user-select:none}
+  #catimg{position:absolute;left:0;top:50%;width:100%;height:100%;object-fit:contain;opacity:0;transform:translateY(-50%) scale(1);transform-origin:center;transition:opacity .5s ease,transform .5s ease;pointer-events:none;z-index:60}
+  .brandwrap.cat #catimg{opacity:1;top:82%;transform:translateY(-50%) scale(2)}
+  .brandwrap.cat #brandimg{opacity:0}
+  #brandimg{transition:opacity .5s ease}
+
   footer{margin-top:36px;text-align:center;color:var(--muted);font-size:12.5px}
   footer a{color:var(--yellow-soft);text-decoration:none}
 </style>
@@ -94,15 +235,73 @@
 <body>
 <div class="wrap">
   <header class="hero">
-    <img class="brandimg" src="konsort-books.png" alt="KONSORT">
-    <div class="kicker">Бібліотека навичок</div>
+    <div class="brandwrap" id="brandwrap">
+      <img class="brandimg" src="konsort-books.png" alt="KONSORT" id="brandimg" draggable="false">
+      <img id="catimg" src="cit.png" alt="" draggable="false">
+    </div>
+    <div class="kicker" id="kicker">Бібліотека навичок</div>
     <h1>Що ти хочеш у собі <b>прокачати</b>?</h1>
     <p class="sub">Обери навичку — і побач книги з нашої бібліотеки, які її розвивають. Тисни «Натисни для опису», щоб дізнатись, про що книга і що вона тобі дасть.</p>
     <div class="roles" id="roles"></div>
     <div class="roleHint">Обери свою роль — підсвітимо навички, найкорисніші саме тобі.</div>
   </header>
 
-  <section id="step1"><div class="grid" id="cats"></div></section>
+  <section id="step1">
+    <div class="grid" id="cats"></div>
+    <div id="featured" class="featured"></div>
+    <div class="toolrow">
+      <button id="aiToggle" class="aibtn">🤖 AI Помічник</button>
+      <button id="propToggle" class="aibtn">💡 Запропонувати</button>
+      <button id="statsToggle" class="addbtn">📊 Статистика</button>
+      <button id="addToggle" class="addbtn">＋ Додати книгу</button>
+    </div>
+    <div id="propPanel" class="aipanel" style="display:none">
+      <h3>💡 Запропонувати</h3>
+      <p class="hint">Запропонуй книгу для закупівлі, напрямок книг або щось для кімнати відпочинку. Пропозиції зʼявляться внизу — за них можна голосувати.</p>
+      <label class="pill-label">Тип пропозиції</label>
+      <div class="kindrow" id="propKind">
+        <button type="button" class="kindbtn active" data-k="book">📕 Книга для закупівлі</button>
+        <button type="button" class="kindbtn" data-k="direction">🧭 Напрямок книг</button>
+        <button type="button" class="kindbtn" data-k="room">🛋️ У кімнату відпочинку</button>
+      </div>
+      <textarea id="prop_text" placeholder="Напр.: книга «Психологія переговорів» / більше книг про інвестиції / зручні крісла-мішки"></textarea>
+      <div class="addbtns">
+        <button id="prop_save" class="takebtn">Додати пропозицію</button>
+        <button id="prop_cancel" class="tcancel">Скасувати</button>
+      </div>
+      <div id="prop_msg" class="f_msg"></div>
+    </div>
+    <div id="statsPanel" class="statspanel" style="display:none"></div>
+    <div id="propBoard" class="propboard"></div>
+    <div id="aiPanel" class="aipanel" style="display:none">
+      <h3>🤖 AI Помічник</h3>
+      <p class="hint">Напиши, що хочеш прочитати або чого навчитися — підберу книги з нашої бібліотеки (покажу і вільні, і зайняті).</p>
+      <div class="aiinputrow">
+        <textarea id="ai_q" placeholder="Напр.: хочу навчитися переконувати клієнтів і не боятися переговорів"></textarea>
+        <button id="ai_mic" class="micbtn" title="Сказати голосом">🎤</button>
+      </div>
+      <button id="ai_run" class="airun">Підібрати книги</button>
+      <div id="ai_status" class="aistatus"></div>
+      <div id="ai_res" class="aires"></div>
+    </div>
+    <div id="addPanel" class="addpanel" style="display:none">
+        <h3>Додати книгу</h3>
+        <p class="hint">Заповни поля — книга одразу зʼявиться у вибраній категорії.</p>
+        <label>Назва книги *<input id="f_t" placeholder="Напр.: Атомні звички"></label>
+        <label>Автор<input id="f_a" placeholder="Напр.: Джеймс Клір"></label>
+        <div class="addrow">
+          <div><label>Категорія *<select id="f_cat"></select></label></div>
+          <div><label>Колір полиці<select id="f_color"></select></label></div>
+        </div>
+        <label>Про що книга<textarea id="f_about" placeholder="1–2 речення, про що вона"></textarea></label>
+        <label>Що прокачаєш (кожен пункт з нового рядка)<textarea id="f_gains" placeholder="Напр.:&#10;Будуватимеш корисні звички&#10;Досягатимеш цілей поступово"></textarea></label>
+        <div class="addbtns">
+          <button id="f_save" class="takebtn">Додати книгу</button>
+          <button id="f_cancel" class="tcancel">Скасувати</button>
+        </div>
+        <div id="f_msg" class="f_msg"></div>
+      </div>
+  </section>
 
   <section id="step2" class="panel">
     <button class="back" onclick="goHome()">← Усі навички</button>
@@ -217,7 +416,7 @@ const BOOKS = [
   {t:"Досконалість керівника", a:"", cat:"leadership", color:"green", about:"Про якості й звички, що відрізняють сильного керівника.", gains:["Розвинеш управлінську зрілість","Працюватимеш над собою"]},
   {t:"Менеджмент (8-е вид.)", a:"Р. Дафт", cat:"leadership", color:"red", about:"Класичний повний підручник з менеджменту.", gains:["Опануєш основи управління","Систематизуєш знання про менеджмент"]},
   {t:"Ефективний керівник", a:"Пітер Друкер", cat:"leadership", color:"red", about:"Класика про те, які звички роблять керівника результативним.", gains:["Керуватимеш ефективно","Фокусуватимешся на результаті"]},
-  {t:"Як карати підлеглих", a:"Олександр Фрідман", cat:"leadership", color:"black", about:"Практика управлінського впливу й дисципліни в команді.", gains:["Триматимеш дисципліну справедливо","Уникатимеш управлінських помилок"]},
+  {t:"Як карати підлеглих", a:"Олександр Фрідман", cat:"leadership", color:"green", about:"Практика управлінського впливу й дисципліни в команді.", gains:["Триматимеш дисципліну справедливо","Уникатимеш управлінських помилок"]},
   {t:"Складні підлеглі. Практика керівників", a:"Максим Батирєв", cat:"leadership", color:"white", about:"Реальні кейси про роботу зі складними співробітниками.", gains:["Даватимеш раду складним людям","Матимеш готові рішення ситуацій"]},
   {t:"Бути начальником — це нормально", a:"Брюс Тулган", cat:"leadership", color:"yellow", about:"Про те, як не боятися керувати й бути сильним менеджером.", gains:["Впевненіше керуватимеш","Ставитимеш чіткі очікування"]},
   {t:"Жорсткий менеджмент", a:"Ден Кеннеді", cat:"leadership", color:"red", about:"Безкомпромісний погляд на дисципліну й результат у бізнесі.", gains:["Вимагатимеш результату","Наведеш порядок у процесах"]},
@@ -269,7 +468,7 @@ const BOOKS = [
   {t:"Чорний лебідь", a:"Нассім Талеб", cat:"strategy", color:"black", about:"Про непередбачувані події, що змінюють усе, і як з ними жити.", gains:["Враховуватимеш рідкісні ризики","Мислитимеш стійко до невизначеності"]},
   {t:"Шкура у грі", a:"Нассім Талеб", cat:"strategy", color:"black", about:"Про відповідальність і ризик, який має нести той, хто вирішує.", gains:["Прийматимеш чесні рішення","Оцінюватимеш реальний ризик"]},
   {t:"Думай, як у NASA", a:"Озан Варол", cat:"strategy", color:"white", about:"Принципи мислення ракетних учених для складних задач.", gains:["Розв'язуватимеш складні задачі","Мислитимеш першопринципами"]},
-  {t:"Принцип 80/20", a:"Річард Кох", cat:"strategy", color:"black", about:"Як 20% зусиль дають 80% результату — і як цим користуватися.", gains:["Фокусуватимешся на головному","Прибиратимеш зайве"]},
+  {t:"Принцип 80/20", a:"Річард Кох", cat:"strategy", color:"white", about:"Як 20% зусиль дають 80% результату — і як цим користуватися.", gains:["Фокусуватимешся на головному","Прибиратимеш зайве"]},
 
   /* Ощадливе виробництво (Lean) */
   {t:"Філософія Toyota", a:"Джефрі К. Лайкер", cat:"lean", color:"red", about:"14 принципів менеджменту Toyota (The Toyota Way).", gains:["Опануєш принципи Toyota","Будуватимеш культуру постійних покращень"]},
@@ -280,7 +479,7 @@ const BOOKS = [
   {t:"Лідерство в стилі Lean", a:"Джим Ланкастер", cat:"lean", color:"white", about:"Як керувати виробництвом у щоденній Lean-практиці.", gains:["Керуватимеш через gemba","Розвиватимеш людей на місцях"]},
 
   /* Гроші та фінанси */
-  {t:"Розумний інвестор", a:"Бенджамін Грем", cat:"money", color:"orange", about:"Біблія вартісного інвестування — спокійно й без спекуляцій.", gains:["Інвестуватимеш розумно","Не піддаватимешся паніці ринку"]},
+  {t:"Розумний інвестор", a:"Бенджамін Грем", cat:"money", color:"red", about:"Біблія вартісного інвестування — спокійно й без спекуляцій.", gains:["Інвестуватимеш розумно","Не піддаватимешся паніці ринку"]},
   {t:"Квадрант грошового потоку", a:"Роберт Кійосакі", cat:"money", color:"black", about:"Про чотири способи заробляти й шлях до фінансової свободи.", gains:["Зрозумієш джерела доходу","Плануватимеш фінансову свободу"]},
   {t:"Школа бізнесу", a:"Роберт Кійосакі", cat:"money", color:"blue", about:"Про можливості бізнесу мереж і пасивного доходу.", gains:["Мислитимеш про пасивний дохід","Переосмислиш заробіток"]},
   {t:"Практична енциклопедія фінансового менеджера", a:"Володимир Савчук", cat:"money", color:"white", about:"Настільний довідник з управління фінансами підприємства.", gains:["Керуватимеш фінансами компанії","Матимеш готові інструменти"]},
@@ -307,7 +506,8 @@ const BOOKS = [
 
   /* Системне та інженерне мислення */
   {t:"Думай повільно, вирішуй швидко", a:"Даніель Канеман", cat:"systems", color:"white", about:"Як працює мислення: дві системи рішень і пастки, у які ми потрапляємо.", gains:["Прийматимеш точніші рішення","Помічатимеш когнітивні помилки"]},
-  {t:"JavaScript і jQuery. Інтерактивна веб-розробка", a:"Джон Дакетт", cat:"systems", color:"orange", about:"Наочний вступ у веброзробку для початківців.", gains:["Освоїш основи веброзробки","Розумітимеш роботу сайтів"]},
+  {t:"JavaScript і jQuery. Інтерактивна веб-розробка", a:"Джон Дакетт", cat:"systems", color:"red", about:"Наочний вступ у веброзробку для початківців.", gains:["Освоїш основи веброзробки","Розумітимеш роботу сайтів"]},
+  {t:"Довідник термінів та інструментів", a:"", cat:"systems", color:"white", about:"Практичний довідник професійних термінів та інструментів.", gains:["Матимеш під рукою терміни","Швидше орієнтуватимешся у процесах"]},
 
   /* Комунікація */
   {t:"10 простих секретів майстрів ділової комунікації", a:"Кармін Галло", cat:"communication", color:"black", about:"Прийоми переконливих виступів і презентацій.", gains:["Виступатимеш переконливо","Триматимеш увагу аудиторії"]},
@@ -320,14 +520,14 @@ const BOOKS = [
   {t:"Ліки від душевного болю", a:"Тетяна Трофименко", cat:"calm", color:"orange", about:"Про те, як давати раду важким емоціям.", gains:["Легше проживатимеш емоції","Відновлюватимеш рівновагу"]},
   {t:"Твоє тіло каже: ЛЮБИ СЕБЕ!", a:"Ліз Бурбо", cat:"calm", color:"white", about:"Про зв'язок емоцій і тіла та прийняття себе.", gains:["Краще чутимеш себе","Практикуватимеш прийняття"]},
   {t:"Жити змістовно", a:"Вільям Б. Ірвін", cat:"calm", color:"black", about:"Сучасний стоїцизм як мистецтво радісного життя.", gains:["Менше тривожитимешся","Житимеш за цінностями"]},
-  {t:"Фен-шуй", a:"", cat:"calm", color:"orange", about:"Про гармонію простору й баланс у житті.", gains:["Створюватимеш гармонійний простір","Наведеш лад навколо"]},
+  {t:"Фен-шуй", a:"", cat:"calm", color:"red", about:"Про гармонію простору й баланс у житті.", gains:["Створюватимеш гармонійний простір","Наведеш лад навколо"]},
 
   /* Сім'я і стосунки */
   {t:"Чоловіки з Марса, жінки з Венери", a:"Джон Ґрей", cat:"family", color:"white", about:"Про відмінності в спілкуванні чоловіків і жінок та як їх долати.", gains:["Менше непорозумінь у парі","Чутимеш партнера"]},
   {t:"Шлюбний транзит", a:"Надя Лоулі", cat:"family", color:"white", about:"Про кризи й переходи в подружніх стосунках.", gains:["Розумітимеш етапи стосунків","Пройдеш кризи легше"]},
 
   /* Саморозвиток та інтелект */
-  {t:"Без меж", a:"Джим Квік", cat:"self", color:"black", about:"Про прискорене навчання, пам'ять і розкриття мозку.", gains:["Вчитимешся швидше","Покращиш пам'ять і фокус"]},
+  {t:"Без меж", a:"Джим Квік", cat:"self", color:"green", about:"Про прискорене навчання, пам'ять і розкриття мозку.", gains:["Вчитимешся швидше","Покращиш пам'ять і фокус"]},
   {t:"Навчитися вчитися", a:"Барбара Оаклі", cat:"self", color:"white", about:"Наукові техніки ефективного навчання будь-чому.", gains:["Опануєш техніки навчання","Легше засвоюватимеш складне"]},
   {t:"Людина розумна (Sapiens)", a:"Ювал Ной Харарі", cat:"self", color:"white", about:"Історія людства від первісних людей до майбутнього.", gains:["Глибше розумітимеш світ","Мислитимеш ширше"]},
   {t:"Неординарні", a:"Малкольм Гладуелл", cat:"self", color:"white", about:"Що насправді стоїть за винятковим успіхом людей.", gains:["Побачиш складові успіху","Переосмислиш «талант»"]},
@@ -336,7 +536,7 @@ const BOOKS = [
   {t:"Алмазний огранувальник", a:"Майкл Роуч", cat:"self", color:"white", about:"Поєднання буддійської мудрості й ведення бізнесу.", gains:["Поєднаєш етику й бізнес","Мислитимеш усвідомлено"]},
   {t:"12 місяців. Рік сенсу", a:"Поліна Башкіна", cat:"self", color:"green", about:"Про пошук сенсу й свідоме проживання року.", gains:["Житимеш усвідомленіше","Плануватимеш зміни"]},
   {t:"Мислити як громадянин", a:"Юло Вооглайд", cat:"self", color:"green", about:"Про критичне мислення й свідому громадянську позицію.", gains:["Мислитимеш критично","Розумітимеш суспільні процеси"]},
-  {t:"Не бійся відчиняти будь-які двері…", a:"Віталій Дмитрієв", cat:"self", color:"blue", about:"Мотиваційна книга про сміливість і нові можливості.", gains:["Долатимеш страхи","Наважуватимешся на нове"]},
+  {t:"Не бійся відчиняти будь-які двері…", a:"Віталій Дмитрієв", cat:"self", color:"yellow", about:"Мотиваційна книга про сміливість і нові можливості.", gains:["Долатимеш страхи","Наважуватимешся на нове"]},
   {t:"Чого вартий успіх", a:"", cat:"self", color:"green", about:"Роздуми про ціну й складові справжнього успіху.", gains:["Переосмислиш успіх","Визначиш свої критерії"]},
 
   /* Кругозір, історія, економіка */
@@ -345,7 +545,7 @@ const BOOKS = [
   {t:"Американське економічне диво", a:"С. Коен, Б. Делонг", cat:"horizons", color:"white", about:"Про роль держави й ринку в економічному зростанні США.", gains:["Вивчиш економічну історію","Побачиш баланс ринку й держави"]},
   {t:"Добробут для всіх", a:"Людвіг Ерхард", cat:"horizons", color:"white", about:"Класика про соціальне ринкове господарство.", gains:["Зрозумієш ринкову економіку","Побачиш модель добробуту"]},
   {t:"Приватні дороги", a:"Уолтер Блок", cat:"horizons", color:"black", about:"Лібертаріанський погляд на приватну ініціативу.", gains:["Побачиш альтернативні ідеї","Розшириш економічний кругозір"]},
-  {t:"Що ми бачимо і чого не бачимо", a:"Фредерік Бастіа", cat:"horizons", color:"white", about:"Класичні економічні есеї про приховані наслідки рішень.", gains:["Бачитимеш неочевидні наслідки","Мислитимеш економічно"]},
+  {t:"Що ми бачимо і чого не бачимо", a:"Фредерік Бастіа", cat:"horizons", color:"blue", about:"Класичні економічні есеї про приховані наслідки рішень.", gains:["Бачитимеш неочевидні наслідки","Мислитимеш економічно"]},
   {t:"Чіпова війна", a:"Кріс Міллер", cat:"horizons", color:"yellow", about:"Геополітика й боротьба за виробництво мікрочипів.", gains:["Розумітимеш світ технологій","Бачитимеш геополітику ринків"]},
   {t:"Чорнобиль. Історія ядерної катастрофи", a:"Сергій Плохій", cat:"horizons", color:"white", about:"Ґрунтовна історія Чорнобильської катастрофи.", gains:["Знатимеш історію глибше","Розумітимеш ціну помилок систем"]},
   {t:"Гітлер і Сталін. Тирани і Друга світова", a:"Лоренс Ріс", cat:"horizons", color:"black", about:"Порівняння двох диктаторів і їхньої ролі у війні.", gains:["Розумітимеш історію XX ст.","Аналізуватимеш владу й тиранію"]},
@@ -357,17 +557,19 @@ const BOOKS = [
   {t:"Апокаліпсиса не буде", a:"Майкл Шелленбергер", cat:"horizons", color:"green", about:"Тверезий погляд на екологію без паніки.", gains:["Критично дивитимешся на еко-теми","Спиратимешся на факти"]},
   {t:"Несподіваний іслам", a:"Роман Назаренко", cat:"horizons", color:"green", about:"Про історію й сучасність ісламського світу.", gains:["Краще розумітимеш іншу культуру","Розшириш кругозір"]},
   {t:"Ейнштейн. Життя і всесвіт генія", a:"Волтер Айзексон", cat:"horizons", color:"white", about:"Біографія великого фізика й людини.", gains:["Надихнешся генієм","Побачиш красу науки"]},
-  {t:"Біблійна Динаміка. Том 1. Буття", a:"Пінхас Полонський", cat:"horizons", color:"orange", about:"Сучасний філософський коментар до книги Буття.", gains:["Глибше читатимеш тексти","Розвинеш абстрактне мислення"]},
+  {t:"Біблійна Динаміка. Том 1. Буття", a:"Пінхас Полонський", cat:"horizons", color:"red", about:"Сучасний філософський коментар до книги Буття.", gains:["Глибше читатимеш тексти","Розвинеш абстрактне мислення"]},
   {t:"Біблійна Динаміка. Вихід (II)", a:"Пінхас Полонський", cat:"horizons", color:"blue", about:"Філософський коментар до книги Вихід.", gains:["Глибше читатимеш тексти","Роздумуватимеш над сенсами"]},
   {t:"Біблійна Динаміка. Числа (IV)", a:"Пінхас Полонський", cat:"horizons", color:"red", about:"Філософський коментар до книги Числа.", gains:["Глибше читатимеш тексти","Розвинеш абстрактне мислення"]},
   {t:"Новий Заповіт", a:"", cat:"horizons", color:"blue", about:"Основоположний текст християнства.", gains:["Знатимеш культурну основу","Роздумуватимеш про цінності"]},
   {t:"Анатомія воїна / Семенові зорі", a:"Андрій Зелінський", cat:"horizons", color:"blue", about:"Роздуми капелана про людину, віру й війну.", gains:["Черпатимеш внутрішню опору","Роздумуватимеш про сенс"]},
   {t:"Сліди на дорозі", a:"Валерій Маркус", cat:"horizons", color:"white", about:"Щоденник військового про досвід війни.", gains:["Зрозумієш досвід захисників","Цінуватимеш стійкість"]},
   {t:"Залізний генерал", a:"Людмила Долгоновська", cat:"horizons", color:"black", about:"Про українського воєначальника.", gains:["Знатимеш сучасну історію","Надихнешся прикладом лідера"]},
+  {t:"Війна очима українського художника", a:"Володимир Ребров", cat:"horizons", color:"white", about:"Художній погляд на війну очима українського митця.", gains:["Відчуєш час крізь мистецтво","Збережеш памʼять про події"]},
+  {t:"Україні потрібні низькі податки… (Forbes)", a:"", cat:"horizons", color:"black", about:"Погляд Forbes на економічну політику: податки, валюта, роль держави.", gains:["Розумітимеш економічну політику","Мислитимеш категоріями держави"]},
   {t:"Великій країні — великі досягнення", a:"", cat:"horizons", color:"red", about:"Про здобутки й розвиток країни.", gains:["Розшириш кругозір","Побачиш масштабні проєкти"]},
 
   /* Для душі: художка й хобі */
-  {t:"Джерело", a:"Айн Ренд", cat:"leisure", color:"yellow", about:"Роман про архітектора, який не зраджує себе — про індивідуалізм і принципи.", gains:["Насолодишся сильним романом","Роздумуватимеш про принципи"]},
+  {t:"Джерело", a:"Айн Ренд", cat:"leisure", color:"green", about:"Роман про архітектора, який не зраджує себе — про індивідуалізм і принципи.", gains:["Насолодишся сильним романом","Роздумуватимеш про принципи"]},
   {t:"Сім чоловіків Евелін Г'юго", a:"Тейлор Дженкінс Рід", cat:"leisure", color:"black", about:"Захопливий роман про життя голлівудської зірки.", gains:["Відпочинеш за історією","Зарядишся емоціями"]},
   {t:"Позивний «Бандерас» (і «Операція Томос»)", a:"С. Дзюба, А. Кірсанов", cat:"leisure", color:"black", about:"Гостросюжетні романи про українських військових.", gains:["Отримаєш динамічний сюжет","Відпочинеш за читанням"]},
   {t:"Тамплієри", a:"Сергій Жадан", cat:"leisure", color:"orange", about:"Поетична збірка сучасного українського автора.", gains:["Насолодишся мовою","Відчуєш сучасну поезію"]},
@@ -375,7 +577,7 @@ const BOOKS = [
   {t:"Полінка", a:"Віталій Запека", cat:"leisure", color:"white", about:"Зворушлива проза Віталія Запеки.", gains:["Емоційно відпочинеш","Відкриєш українського автора"]},
   {t:"Чуцик", a:"Віталій Запека", cat:"leisure", color:"green", about:"Проза про війну й людяність.", gains:["Глибше відчуєш час","Відпочинеш за читанням"]},
   {t:"Покров", a:"Люко Дашвар", cat:"leisure", color:"red", about:"Популярний український роман про людські долі.", gains:["Занурюєшся в українську прозу","Емоційно відпочинеш"]},
-  {t:"Село не люди", a:"Люко Дашвар", cat:"leisure", color:"orange", about:"Гостра українська проза про село й людей.", gains:["Занурюєшся в українську прозу","Замислишся над життям"]},
+  {t:"Село не люди", a:"Люко Дашвар", cat:"leisure", color:"red", about:"Гостра українська проза про село й людей.", gains:["Занурюєшся в українську прозу","Замислишся над життям"]},
   {t:"Ніколи не бреши", a:"Фріда Мак-Фадден", cat:"leisure", color:"black", about:"Психологічний трилер із несподіваними поворотами.", gains:["Отримаєш напругу трилера","Відволічешся від рутини"]},
   {t:"Майстер утечі", a:"Джонатан Фрідленд", cat:"leisure", color:"black", about:"Заснований на реальних подіях роман-втеча.", gains:["Захопишся сюжетом","Дізнаєшся історію крізь роман"]},
   {t:"Рафаель Сабатіні (зібрання творів)", a:"", cat:"leisure", color:"black", about:"Класика пригодницької прози.", gains:["Відпочинеш за пригодами","Насолодишся класикою жанру"]},
@@ -399,8 +601,70 @@ const BOOKS = [
   {t:"Відомі картини (вишивка)", a:"", cat:"leisure", color:"blue", about:"Схеми відомих картин для вишивки.", gains:["Опануєш вишивку","Відпочиватимеш за рукоділлям"]},
   {t:"Святкові мотиви (вишивка)", a:"", cat:"leisure", color:"red", about:"Схеми святкових мотивів.", gains:["Опануєш вишивку","Відпочиватимеш за рукоділлям"]},
   {t:"Скатертини, ковдри, пледи, подушки (вишивка)", a:"", cat:"leisure", color:"red", about:"Схеми вишивки для домашнього текстилю.", gains:["Опануєш вишивку","Прикрашатимеш дім"]},
+  {t:"400 нових схем (вишивка)", a:"", cat:"leisure", color:"white", about:"Велика збірка схем для вишивки хрестиком.", gains:["Матимеш сотні схем","Відпочиватимеш за рукоділлям"]},
   {t:"Чудові натюрморти (вишивка)", a:"", cat:"leisure", color:"green", about:"Схеми натюрмортів для вишивки.", gains:["Опануєш вишивку","Відпочиватимеш за рукоділлям"]},
-  {t:"Енциклопедія. Об'ємна вишивка", a:"", cat:"leisure", color:"blue", about:"Довідник із технік об'ємної вишивки.", gains:["Опануєш об'ємну вишивку","Відпочиватимеш за рукоділлям"]}
+  {t:"Енциклопедія. Об'ємна вишивка", a:"", cat:"leisure", color:"blue", about:"Довідник із технік об'ємної вишивки.", gains:["Опануєш об'ємну вишивку","Відпочиватимеш за рукоділлям"]},
+
+  /* ===== Додано за фото полиць ===== */
+  /* Лідерство */
+  {t:"Супербоси", a:"Сідні Фінкельстін", cat:"leadership", color:"orange", about:"Як найкращі лідери виховують таланти, що змінюють цілі індустрії.", gains:["Розвиватимеш людей","Будуватимеш школу талантів"]},
+  {t:"Як подолати кризу управління", a:"Іцхак Калдерон Адізес", cat:"leadership", color:"orange", about:"Класик менеджменту про подолання управлінських криз.", gains:["Долатимеш кризи управління","Мислитимеш ролями в команді"]},
+  {t:"Ідеальний керівник", a:"Іцхак Калдерон Адізес", cat:"leadership", color:"blue", about:"Чому ідеального керівника не існує — і як будувати команду, що доповнює одне одного.", gains:["Формуватимеш сильну команду","Делегуватимеш свідомо"]},
+  {t:"Успішний керівник", a:"Володимир Савчук", cat:"leadership", color:"blue", about:"Практика управління компанією від українського експерта.", gains:["Керуватимеш системно","Прийматимеш обґрунтовані рішення"]},
+  {t:"Секрет. Що знають і роблять великі лідери", a:"Кен Бланшар, Марк Міллер", cat:"leadership", color:"blue", about:"Проста притча про суть служіння-лідерства.", gains:["Зрозумієш суть лідерства","Служитимеш команді"]},
+  {t:"Моє бачення", a:"Мухаммед бін Рашид аль Мактум", cat:"leadership", color:"blue", about:"Правитель Дубая про візію, амбіції та державне управління.", gains:["Мислитимеш масштабно","Ставитимеш великі цілі"]},
+  {t:"Організація і психологія управління персоналом", a:"Г. Щокін", cat:"leadership", color:"blue", about:"Ґрунтовний посібник з управління персоналом.", gains:["Розумітимеш психологію команди","Систематизуєш роботу з людьми"]},
+  /* Бізнес */
+  {t:"Величні за власним вибором", a:"Джим Коллінз, Мортен Хансен", cat:"business", color:"blue", about:"Чому одні компанії процвітають у хаосі, а інші ні.", gains:["Будуватимеш стійкий бізнес","Дисципліновано ростимеш"]},
+  {t:"Засновники. Історія створення PayPal", a:"Джиммі Соні", cat:"business", color:"blue", about:"Історія «мафії PayPal», що сформувала Кремнієву долину.", gains:["Вивчиш анатомію стартапу","Надихнешся засновниками"]},
+  {t:"Корпоративне управління в приватних та сімейних компаніях", a:"", cat:"business", color:"blue", about:"Настільна книга про управління сімейним і приватним бізнесом.", gains:["Побудуєш управління сімейною справою","Уникатимеш конфліктів власників"]},
+  {t:"Виклик, шанс, зміна. Історія українського підприємництва", a:"", cat:"business", color:"green", about:"Історія становлення підприємництва в Україні.", gains:["Знатимеш український бізнес-контекст","Надихнешся підприємцями"]},
+  {t:"Бізнес або смерть", a:"Савва Лібкін", cat:"business", color:"black", about:"Як побудувати мережу й не втратити себе — від українського ресторатора.", gains:["Будуватимеш бізнес свідомо","Зберігатимеш баланс"]},
+  /* Маркетинг */
+  {t:"Маркетинг-менеджмент", a:"Ф. Котлер, К.Л. Келлер", cat:"marketing", color:"blue", about:"Головний світовий підручник з маркетингу.", gains:["Отримаєш повну базу маркетингу","Мислитимеш системно про ринок"]},
+  /* Стратегія */
+  {t:"Стратегії геніїв", a:"М. Кусумано, Д. Йоффі", cat:"strategy", color:"blue", about:"Уроки стратегії від Гейтса, Ґроува та Джобса.", gains:["Мислитимеш як топ-стратег","Прийматимеш сміливі рішення"]},
+  {t:"Державець", a:"Нікколо Макіавеллі", cat:"strategy", color:"green", about:"Класичний трактат про владу, політику й стратегію.", gains:["Розумітимеш природу влади","Мислитимеш прагматично"]},
+  {t:"Широким поглядом. Нова стратегія інновацій", a:"Рон Аднер", cat:"strategy", color:"blue", about:"Як бачити ширшу екосистему й вигравати на інноваціях.", gains:["Бачитимеш екосистему цілком","Плануватимеш інновації"]},
+  {t:"Риск-менеджмент: базові принципи", a:"", cat:"strategy", color:"blue", about:"Основи управління ризиками в бізнесі.", gains:["Оцінюватимеш ризики","Захищатимеш бізнес"]},
+  /* Продуктивність */
+  {t:"Коротко і по суті", a:"Грег Маккеон", cat:"productivity", color:"orange", about:"Про фокус на головному й уміння робити менше, але краще.", gains:["Прибиратимеш зайве","Фокусуватимешся на суті"]},
+  /* Саморозвиток */
+  {t:"Технологія життя. Книга для героїв", a:"Володимир Тарасов", cat:"self", color:"red", about:"Про життєву стратегію, вчинки й філософію сильної людини.", gains:["Мислитимеш стратегічно про життя","Дієш за принципами"]},
+  {t:"Нездоланні", a:"Адам Альтер", cat:"self", color:"blue", about:"Про залежність від технологій і як повернути контроль над увагою.", gains:["Керуватимеш увагою","Менше залежатимеш від гаджетів"]},
+  {t:"Ідеї каббали та їх застосування в житті", a:"Марат Рессін", cat:"self", color:"orange", about:"Погляд на давнє вчення й його практичне застосування.", gains:["Розшириш світогляд","Роздумуватимеш про сенси"]},
+  {t:"Жінка, у якої є план", a:"Мей Маск", cat:"self", color:"black", about:"Мемуари матері Ілона Маска про сміливе життя в будь-якому віці.", gains:["Надихнешся прикладом","Плануватимеш зміни"]},
+  {t:"Настільна книга практичного психолога", a:"", cat:"self", color:"blue", about:"Практичний довідник із психології для щоденного життя.", gains:["Краще розумітимеш людей","Матимеш практичні техніки"]},
+  /* Комунікація */
+  {t:"УСІ. Англійські фрази та діалоги", a:"", cat:"communication", color:"blue", about:"1000 фраз і діалогів для повсякденного англійського спілкування.", gains:["Заговориш англійською впевненіше","Матимеш готові фрази"]},
+  {t:"Сучасний англо-український / українсько-англійський словник", a:"М. Зубков, В. Мюллер", cat:"communication", color:"red", about:"Великий сучасний словник із 100 000 слів.", gains:["Швидше знаходитимеш переклади","Розширюватимеш словник"]},
+  /* Продажі */
+  {t:"Собаки продажів (SalesDogs)", a:"Блер Сінгер", cat:"persuasion", color:"black", about:"Про різні стилі продавців і як продавати без агресії.", gains:["Знайдеш свій стиль продажів","Продаватимеш природно"]},
+  /* Стресостійкість / здоров'я */
+  {t:"Древній секрет джерела молодості", a:"Пітер Келдер", cat:"calm", color:"white", about:"Про прості практики для енергії, тонусу й відновлення.", gains:["Матимеш більше енергії","Дбатимеш про тіло"]},
+  /* Кругозір, історія */
+  {t:"Почесні імена України. Еліта держави", a:"", cat:"horizons", color:"blue", about:"Біографічна енциклопедія видатних українців.", gains:["Знатимеш видатних людей","Надихнешся прикладами"]},
+  {t:"Нарис історії України", a:"Ярослав Грицак", cat:"horizons", color:"white", about:"Формування модерної української нації у XIX–XX ст.", gains:["Глибше знатимеш історію","Розумітимеш сьогодення"]},
+  {t:"Спецоперації. Лубянка і Кремль", a:"Павло Судоплатов", cat:"horizons", color:"blue", about:"Мемуари радянського розвідника про епоху 1930–1950-х.", gains:["Знатимеш історію спецслужб","Критично оцінюватимеш джерела"]},
+  {t:"Фактор Черчилля", a:"Борис Джонсон", cat:"horizons", color:"black", about:"Як одна людина змінила історію — про Вінстона Черчилля.", gains:["Вивчиш велику постать","Побачиш силу лідерства"]},
+  {t:"Подолати минуле: глобальна історія України", a:"", cat:"horizons", color:"blue", about:"Сучасний погляд на історію України у світовому контексті.", gains:["Побачиш Україну у світі","Мислитимеш історично"]},
+  {t:"Таємні вчення всіх часів", a:"Менлі П. Холл", cat:"horizons", color:"blue", about:"Енциклопедія езотеричних і філософських традицій.", gains:["Розшириш кругозір","Знатимеш історію ідей"]},
+  {t:"Мікроекономіка. Теорія і практика", a:"", cat:"horizons", color:"orange", about:"Підручник з основ мікроекономіки.", gains:["Розумітимеш економіку","Аналізуватимеш ринки"]},
+  {t:"Національний аерокосмічний університет «ХАІ»", a:"", cat:"horizons", color:"white", about:"Про становлення й розвиток відомого українського університету.", gains:["Знатимеш історію ХАІ","Пишатимешся освітою"]},
+  {t:"Як ошукати місцеву громаду. 50+1 спосіб", a:"", cat:"horizons", color:"white", about:"Про типові схеми й протидію корупції на місцевому рівні.", gains:["Розпізнаватимеш схеми","Захищатимеш громаду"]},
+  /* Для душі */
+  {t:"Скрипниківка", a:"Сергій Жадан", cat:"leisure", color:"white", about:"Проза сучасного українського письменника.", gains:["Насолодишся стилем","Відпочинеш за читанням"]},
+  {t:"Мати все", a:"Люко Дашвар", cat:"leisure", color:"black", about:"Популярний український роман про людські пристрасті.", gains:["Емоційно відпочинеш","Занурюєшся в прозу"]},
+  {t:"Битіє Макс", a:"Люко Дашвар", cat:"leisure", color:"white", about:"Гострий сучасний роман Люко Дашвар.", gains:["Захопишся сюжетом","Відволічешся від рутини"]},
+  {t:"Герої, херої та не дуже", a:"Віталій Запека", cat:"leisure", color:"white", about:"Воєнно-сатиричний роман про війну й людей.", gains:["Подивишся на війну інакше","Відпочинеш за прозою"]},
+  {t:"Велика різдвяна книжка", a:"Н. Гербіш, Я. Грицак", cat:"leisure", color:"blue", about:"Тепла книжка про Різдво, традиції та святковий настрій.", gains:["Створиш святковий настрій","Відновиш сили"]},
+  {t:"Різдвяна книжка", a:"Надійка Гербіш", cat:"leisure", color:"blue", about:"Затишні різдвяні історії й традиції.", gains:["Зарядишся теплом","Відпочинеш душею"]},
+  {t:"Українська поетична антологія", a:"", cat:"leisure", color:"blue", about:"Збірка української поезії.", gains:["Насолодишся поезією","Відчуєш красу мови"]},
+  {t:"План. Роман про Євгена Чикаленка", a:"Степан Процюк", cat:"leisure", color:"blue", about:"Історичний роман про мецената й діяча Євгена Чикаленка.", gains:["Пізнаєш історію крізь роман","Відпочинеш за читанням"]},
+  {t:"5 інструментів для розвитку вашої бізнес-моделі", a:"IFC (World Bank Group)", cat:"business", color:"blue", about:"Практичний посібник IFC про інструменти вдосконалення бізнес-моделі.", gains:["Покращиш бізнес-модель","Матимеш готові інструменти"]},
+  {t:"Музейна корма. Вареники, галушки", a:"Полтавський краєзнавчий музей", cat:"leisure", color:"red", about:"Традиційні полтавські страви: вареники й галушки.", gains:["Готуватимеш традиційні страви","Відпочинеш за куховарством"]},
+  {t:"Музейна корма. Хліб", a:"Полтавський краєзнавчий музей", cat:"leisure", color:"red", about:"Традиційні полтавські рецепти хліба.", gains:["Спечеш традиційний хліб","Долучишся до культури"]},
+  {t:"Музейна корма. Юшки, супи", a:"Полтавський краєзнавчий музей", cat:"leisure", color:"red", about:"Традиційні полтавські юшки та супи.", gains:["Готуватимеш смачні юшки","Відпочинеш за куховарством"]}
 ];
 
 /* ================= рушій ================= */
@@ -416,7 +680,301 @@ ROLES.forEach(r=>{
   rolesEl.appendChild(b);
 });
 function renderRoles(){[...rolesEl.children].forEach(b=>b.classList.toggle('active',b.dataset.id===activeRole));}
-function catCount(id){return BOOKS.filter(b=>b.cat===id).length;}
+
+/* ============================================================
+   СПІЛЬНА БАЗА (для всіх пристроїв).
+   Встав сюди адресу свого Google Apps Script Web App —
+   і дані «хто взяв» та нові книги стануть спільними для всіх.
+   Порожньо = працює локально (тільки на цьому пристрої).
+   Інструкція — у файлі СПІЛЬНА-БАЗА-Google.md
+   ============================================================ */
+const API_URL = "https://script.google.com/macros/s/AKfycbwYdxmWqq7iEIifTSaJ8ZtYziYppxrlTP4oHZWG71w9Iqh2dCLh-KB9n6jHHftTS5RjBw/exec";
+
+let CACHE_TAKEN={}, CACHE_BOOKS=[], CACHE_REVIEWS={}, CACHE_QUEUE={}, CACHE_HISTORY=[], CACHE_PROPS=[], currentCatId=null;
+function remote(){return !!API_URL;}
+function lsGet(k,def){try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(def));}catch(e){return def;}}
+function lsSet(k,v){localStorage.setItem(k,JSON.stringify(v));}
+
+const MONTHS=["січня","лютого","березня","квітня","травня","червня","липня","серпня","вересня","жовтня","листопада","грудня"];
+function esc(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+function loadTaken(){
+  if(remote()) return CACHE_TAKEN||{};
+  try{return JSON.parse(localStorage.getItem('konsort_taken')||'{}');}catch(e){return {};}
+}
+function loadCustom(){
+  if(remote()) return CACHE_BOOKS||[];
+  try{return JSON.parse(localStorage.getItem('konsort_books')||'[]');}catch(e){return [];}
+}
+function allBooks(){return BOOKS.concat(loadCustom());}
+function catCount(id){return allBooks().filter(b=>b.cat===id).length;}
+
+/* запис: локально або на сервер (оптимістично + фонова синхронізація) */
+function setTaken(id,rec){
+  if(remote()){
+    if(rec===null) delete CACHE_TAKEN[id]; else CACHE_TAKEN[id]=rec;
+    postAction(rec===null?{action:'return',id:id}:{action:'take',id:id,name:rec.name,anon:rec.anon,ts:rec.ts});
+  }else{
+    let t; try{t=JSON.parse(localStorage.getItem('konsort_taken')||'{}');}catch(e){t={};}
+    if(rec===null) delete t[id]; else t[id]=rec;
+    localStorage.setItem('konsort_taken',JSON.stringify(t));
+  }
+}
+function addBookStore(book){
+  if(remote()){
+    CACHE_BOOKS.push(book);
+    postAction(Object.assign({action:'add'},book));
+  }else{
+    let a; try{a=JSON.parse(localStorage.getItem('konsort_books')||'[]');}catch(e){a=[];}
+    a.push(book); localStorage.setItem('konsort_books',JSON.stringify(a));
+  }
+}
+function postAction(payload){
+  try{
+    fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
+      .then(()=>refreshRemote()).catch(()=>{});
+  }catch(e){}
+  setTimeout(refreshRemote,1500); // на випадок CORS — гарантована фонова синхронізація
+}
+function refreshRemote(){
+  if(!remote()) return Promise.resolve();
+  return fetch(API_URL).then(r=>r.json()).then(d=>{
+    CACHE_TAKEN=(d&&d.taken)||{}; CACHE_BOOKS=(d&&d.books)||[];
+    CACHE_REVIEWS=(d&&d.reviews)||{}; CACHE_QUEUE=(d&&d.queue)||{}; CACHE_HISTORY=(d&&d.history)||[];
+    CACHE_PROPS=(d&&d.props)||[];
+    renderCats(); renderFeatured(); renderBoard();
+    if(step2.classList.contains('on')&&currentCatId) openCat(currentCatId);
+  }).catch(()=>{});
+}
+
+/* ---- відгуки/оцінки, черга, історія ---- */
+function loadReviews(){return remote()?(CACHE_REVIEWS||{}):lsGet('konsort_reviews',{});}
+function loadQueue(){return remote()?(CACHE_QUEUE||{}):lsGet('konsort_queue',{});}
+function loadHistory(){return remote()?(CACHE_HISTORY||[]):lsGet('konsort_history',[]);}
+function addReview(id,rev){
+  if(remote()){(CACHE_REVIEWS[id]=CACHE_REVIEWS[id]||[]).push(rev);postAction(Object.assign({action:'rate',id:id},rev));}
+  else{const r=lsGet('konsort_reviews',{});(r[id]=r[id]||[]).push(rev);lsSet('konsort_reviews',r);}
+}
+function joinQueue(id,name){
+  const rec={name:name,ts:Date.now()};
+  if(remote()){(CACHE_QUEUE[id]=CACHE_QUEUE[id]||[]).push(rec);postAction({action:'queue',id:id,name:name,ts:rec.ts});}
+  else{const q=lsGet('konsort_queue',{});(q[id]=q[id]||[]).push(rec);lsSet('konsort_queue',q);}
+}
+function leaveQueue(id,name){
+  if(remote()){CACHE_QUEUE[id]=(CACHE_QUEUE[id]||[]).filter(x=>x.name!==name);postAction({action:'unqueue',id:id,name:name});}
+  else{const q=lsGet('konsort_queue',{});q[id]=(q[id]||[]).filter(x=>x.name!==name);lsSet('konsort_queue',q);}
+}
+function logHistory(id,name,tookTs){
+  const rec={id:id,name:name,tookTs:tookTs||0,returnTs:Date.now()};
+  if(remote()){CACHE_HISTORY.push(rec);postAction(Object.assign({action:'log'},rec));}
+  else{const h=lsGet('konsort_history',[]);h.push(rec);lsSet('konsort_history',h);}
+}
+
+/* ---- пропозиції та голосування ---- */
+function loadProps(){return remote()?(CACHE_PROPS||[]):lsGet('konsort_props',[]);}
+function addPropStore(p){
+  if(remote()){CACHE_PROPS.push(p);postAction(Object.assign({action:'prop'},p));}
+  else{const a=lsGet('konsort_props',[]);a.push(p);lsSet('konsort_props',a);}
+}
+function votePropStore(id,name){
+  if(remote()){const p=(CACHE_PROPS||[]).find(x=>x.id===id);if(p){p.votes=p.votes||[];p.votes.push({name:name,ts:Date.now()});}postAction({action:'vote',id:id,name:name,ts:Date.now()});}
+  else{const a=lsGet('konsort_props',[]);const p=a.find(x=>x.id===id);if(p){p.votes=p.votes||[];p.votes.push({name:name,ts:Date.now()});lsSet('konsort_props',a);}}
+}
+function kindLabel(k){return {book:'📕 Книга для закупівлі',direction:'🧭 Напрямок книг',room:'🛋️ Кімната відпочинку'}[k]||k;}
+
+function renderBoard(){
+  const board=document.getElementById('propBoard');
+  if(!board) return;
+  const props=(loadProps()||[]).slice().sort((a,b)=>((b.votes||[]).length-(a.votes||[]).length));
+  if(!props.length){board.innerHTML='';return;}
+  board.innerHTML='<h3>💡 Відділ пропозицій — голосуй за ідеї ❤</h3>';
+  props.forEach(p=>{
+    const votes=(p.votes||[]).length;
+    const el=document.createElement('div'); el.className='propcard';
+    el.innerHTML=`<div class="propvote"><button class="heartbtn">🤍</button><span class="heartcount">${votes}</span></div>
+      <div class="pbody"><div class="pk">${kindLabel(p.kind)}</div><div class="pt">${esc(p.text)}</div><div class="pvwrap"></div></div>`;
+    const heart=el.querySelector('.heartbtn'), cnt=el.querySelector('.heartcount'), pv=el.querySelector('.pvwrap');
+    heart.onclick=()=>{
+      pv.innerHTML=`<div class="voteform">
+        <input class="vname" placeholder="Ваше прізвище та ім'я">
+        <div class="tbtnrow"><button class="vgo tconfirm">Проголосувати ❤</button><button class="tcancel">Скасувати</button></div>
+        <div class="vmsg" style="font-size:12.5px;color:#ffb4b4;margin-top:2px"></div></div>`;
+      const nm=pv.querySelector('.vname'); nm.focus();
+      pv.querySelector('.tcancel').onclick=()=>{pv.innerHTML='';};
+      pv.querySelector('.vgo').onclick=()=>{
+        const v=nm.value.trim(), msg=pv.querySelector('.vmsg');
+        if(!v){nm.style.borderColor='#ef4444';return;}
+        const already=(p.votes||[]).some(x=>(x.name||'').toLowerCase()===v.toLowerCase());
+        if(already){msg.textContent='Ви вже голосували за цю ідею 🙂';return;}
+        flyVote(pv, cnt);
+        votePropStore(p.id, v);
+        setTimeout(()=>{
+          cnt.textContent=(parseInt(cnt.textContent||'0',10)+1);
+          cnt.classList.remove('bump'); void cnt.offsetWidth; cnt.classList.add('bump');
+          heart.textContent='❤';
+          pv.innerHTML='';
+        },560);
+      };
+    };
+    board.appendChild(el);
+  });
+}
+function flyVote(sourceEl, targetEl){
+  const s=sourceEl.getBoundingClientRect(), t=targetEl.getBoundingClientRect();
+  const fly=document.createElement('div'); fly.className='flyheart'; fly.textContent='❤';
+  fly.style.left=(s.left+s.width/2-13)+'px'; fly.style.top=(s.top+8)+'px';
+  document.body.appendChild(fly);
+  requestAnimationFrame(()=>{
+    const dx=(t.left+t.width/2)-(s.left+s.width/2);
+    const dy=(t.top+t.height/2)-(s.top+8);
+    fly.style.transform='translate('+dx+'px,'+dy+'px) scale(.55)';
+    fly.style.opacity='0';
+  });
+  if(navigator.vibrate) navigator.vibrate(25);
+  setTimeout(()=>fly.remove(),650);
+}
+function initProp(){
+  const toggle=document.getElementById('propToggle'), panel=document.getElementById('propPanel');
+  toggle.onclick=()=>{const show=panel.style.display==='none';panel.style.display=show?'block':'none';if(show){hidePanelsExcept('propPanel');document.getElementById('prop_text').focus();}};
+  let kind='book';
+  const kb=document.getElementById('propKind');
+  const txt=document.getElementById('prop_text');
+  const ph={
+    book:'Напр.: книга «Ніколи не йдіть на компроміс» (Кріс Восс)',
+    direction:'Напр.: більше книг про інвестиції та особисті фінанси',
+    room:'Напр.: зручні крісла-мішки, кавомашина або настільна гра в кімнату відпочинку'
+  };
+  txt.placeholder=ph.book;
+  kb.querySelectorAll('.kindbtn').forEach(b=>b.onclick=()=>{kind=b.dataset.k;kb.querySelectorAll('.kindbtn').forEach(x=>x.classList.toggle('active',x===b));txt.placeholder=ph[kind]||'';});
+  document.getElementById('prop_cancel').onclick=()=>{panel.style.display='none';};
+  document.getElementById('prop_save').onclick=()=>{
+    const text=document.getElementById('prop_text').value.trim(), msg=document.getElementById('prop_msg');
+    if(!text){msg.style.color='#ef4444';msg.textContent='Напишіть пропозицію.';return;}
+    addPropStore({id:'p'+Date.now()+Math.floor(Math.random()*999),kind:kind,text:text,ts:Date.now(),votes:[]});
+    msg.style.color='#7ee2a4';msg.textContent='Дякуємо! Пропозицію додано нижче.';
+    document.getElementById('prop_text').value='';
+    renderBoard();
+  };
+}
+
+/* ---- «Взяти книгу» ---- */
+function takenText(rec){
+  const older=(Date.now()-rec.ts)>90*24*3600*1000;
+  const d=new Date(rec.ts);
+  const since=older?` з ${MONTHS[d.getMonth()]} ${d.getFullYear()}`:'';
+  if(rec.anon) return `Взято (анонімно)${since}`;
+  return `У ${esc(rec.name)}${since}`;
+}
+function renderTake(box,id){
+  const rec=loadTaken()[id];
+  if(rec){
+    const q=(loadQueue()[id]||[]);
+    box.innerHTML=`
+      <div><span class="takenlbl">${takenText(rec)}</span><span class="returnlink">повернути</span></div>
+      <div class="queuewrap">
+        ${q.length?`<div class="qlist">У черзі (${q.length}): ${q.map(x=>esc(x.name)).join(', ')}</div>`:''}
+        <button class="qbtn">Стати в чергу наступним</button>
+      </div>`;
+    box.querySelector('.returnlink').onclick=()=>{
+      const r=loadTaken()[id];
+      if(r) logHistory(id, r.anon?'Анонім':r.name, r.ts);
+      setTaken(id,null); renderTake(box,id);
+    };
+    box.querySelector('.qbtn').onclick=()=>{
+      const w=box.querySelector('.queuewrap');
+      w.innerHTML=`<div class="takeform">
+        <input class="qname" placeholder="Ваше прізвище та ім'я">
+        <div class="tbtnrow"><button class="qconfirm tconfirm">У чергу</button><button class="tcancel">Скасувати</button></div></div>`;
+      const nm=w.querySelector('.qname'); nm.focus();
+      w.querySelector('.tcancel').onclick=()=>renderTake(box,id);
+      w.querySelector('.qconfirm').onclick=()=>{const v=nm.value.trim(); if(!v){nm.style.borderColor='#ef4444';return;} joinQueue(id,v); renderTake(box,id);};
+    };
+    return;
+  }
+  box.innerHTML=`<button class="takebtn">Взяти книгу</button>`;
+  box.querySelector('.takebtn').onclick=()=>{
+    box.innerHTML=`
+      <div class="takeform">
+        <input class="tname" placeholder="Ваше прізвище та ім'я" autocomplete="name">
+        <label class="anon"><input type="checkbox" class="tanon"> взяти анонімно</label>
+        <div class="tbtnrow">
+          <button class="tconfirm">Підтвердити</button>
+          <button class="tcancel">Скасувати</button>
+        </div>
+      </div>`;
+    const nameEl=box.querySelector('.tname'), anonEl=box.querySelector('.tanon');
+    nameEl.focus();
+    box.querySelector('.tcancel').onclick=()=>renderTake(box,id);
+    box.querySelector('.tconfirm').onclick=()=>{
+      const anon=anonEl.checked;
+      const name=nameEl.value.trim();
+      if(!anon && !name){nameEl.style.borderColor='#ef4444';nameEl.placeholder='Впишіть імʼя або оберіть «анонімно»';return;}
+      setTaken(id,{name:name,anon:anon,ts:Date.now()});
+      renderTake(box,id);
+    };
+  };
+}
+
+/* ---- відгуки та оцінки ---- */
+function stars(n){let s='';for(let i=1;i<=5;i++)s+=(i<=n?'★':'☆');return s;}
+function renderReviews(box,id){
+  const revs=(loadReviews()[id]||[]);
+  const avg=revs.length?(revs.reduce((a,r)=>a+(+r.stars||0),0)/revs.length):0;
+  const head=revs.length
+    ? `<div class="revhead"><span class="revstars">${stars(Math.round(avg))}</span> ${avg.toFixed(1)} · ${revs.length} відгук(ів)</div>`
+    : `<div class="revhead revmuted">Ще без оцінок — стань першим</div>`;
+  const listHtml=revs.slice(-3).reverse().map(r=>
+    `<div class="revitem"><span class="revstars">${stars(r.stars)}</span> <b>${esc(r.name||'Анонім')}</b>${r.text?`<div class="revtext">${esc(r.text)}</div>`:''}</div>`).join('');
+  box.innerHTML=`<div class="revblock"><span class="gcap">Відгуки та оцінки</span>${head}${listHtml}
+    <button class="revtoggle">Оцінити / залишити відгук</button></div>`;
+  box.querySelector('.revtoggle').onclick=()=>{
+    const form=document.createElement('div'); form.className='takeform revform';
+    let picked=0;
+    form.innerHTML=`<div class="starpick">${[1,2,3,4,5].map(i=>`<span data-s="${i}">☆</span>`).join('')}</div>
+      <input class="rvname" placeholder="Ваше імʼя (необовʼязково)">
+      <textarea class="rvtext" placeholder="Кілька слів про книгу (необовʼязково)"></textarea>
+      <div class="tbtnrow"><button class="rvsave tconfirm">Надіслати</button><button class="tcancel">Скасувати</button></div>`;
+    box.querySelector('.revblock').appendChild(form);
+    const spans=[...form.querySelectorAll('.starpick span')];
+    spans.forEach(sp=>sp.onclick=()=>{picked=+sp.dataset.s;spans.forEach(x=>x.textContent=((+x.dataset.s)<=picked)?'★':'☆');});
+    form.querySelector('.tcancel').onclick=()=>renderReviews(box,id);
+    form.querySelector('.rvsave').onclick=()=>{
+      if(!picked){form.querySelector('.starpick').style.color='#ef4444';return;}
+      addReview(id,{name:form.querySelector('.rvname').value.trim()||'Анонім',stars:picked,text:form.querySelector('.rvtext').value.trim(),ts:Date.now()});
+      renderReviews(box,id);
+    };
+  };
+}
+
+/* ---- форма «Додати книгу» ---- */
+function initAdd(){
+  const toggle=document.getElementById('addToggle'), panel=document.getElementById('addPanel');
+  const catSel=document.getElementById('f_cat'), colSel=document.getElementById('f_color');
+  CATEGORIES.forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.nm;catSel.appendChild(o);});
+  const cNone=document.createElement('option');cNone.value='';cNone.textContent='— не вказано —';colSel.appendChild(cNone);
+  Object.keys(COLORS).forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=COLORS[k].nm.replace(/^./,m=>m.toUpperCase());colSel.appendChild(o);});
+  toggle.onclick=()=>{
+    const show=panel.style.display==='none';
+    panel.style.display=show?'block':'none';
+    if(show){const ai=document.getElementById('aiPanel'); if(ai) ai.style.display='none';}
+  };
+  document.getElementById('f_cancel').onclick=()=>{panel.style.display='none';};
+  document.getElementById('f_save').onclick=()=>{
+    const t=document.getElementById('f_t').value.trim();
+    const cat=catSel.value;
+    const msg=document.getElementById('f_msg');
+    if(!t){msg.style.color='#ef4444';msg.textContent='Впишіть назву книги.';return;}
+    if(!cat){msg.style.color='#ef4444';msg.textContent='Оберіть категорію.';return;}
+    const gains=document.getElementById('f_gains').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    const book={t:t,a:document.getElementById('f_a').value.trim(),cat:cat,color:colSel.value,
+      about:document.getElementById('f_about').value.trim(),gains:gains};
+    addBookStore(book);
+    const catNm=(CATEGORIES.find(c=>c.id===cat)||{}).nm||'';
+    msg.style.color='#7ee2a4';msg.textContent=`Готово! «${t}» додано в «${catNm}».`;
+    ['f_t','f_a','f_about','f_gains'].forEach(idn=>document.getElementById(idn).value='');
+    renderCats();
+  };
+}
 
 function renderCats(){
   catsEl.innerHTML='';
@@ -438,10 +996,11 @@ function shelfHtml(color){
 }
 
 function openCat(id){
+  currentCatId=id;
   const c=CATEGORIES.find(x=>x.id===id);
   document.getElementById('fTitle').textContent=c.future;
   document.getElementById('fText').textContent=c.text;
-  const list=BOOKS.filter(b=>b.cat===id);
+  const list=allBooks().filter(b=>b.cat===id);
   const box=document.getElementById('books'); box.innerHTML='';
   if(!list.length){box.innerHTML='<div class="empty">Скоро додамо книги для цієї навички 📚</div>';}
   else list.forEach(b=>{
@@ -458,9 +1017,13 @@ function openCat(id){
         <p class="about"><span class="cap">Про що книга</span>${b.about||''}</p>
         ${gains?`<span class="gcap">Що прокачаєш</span><ul class="gains">${gains}</ul>`:''}
         ${shelfHtml(b.color)}
+        <div class="takewrap"></div>
+        <div class="revwrap"></div>
       </div></div>`;
     const btn=el.querySelector('.openbtn'), lbl=el.querySelector('.lbltxt');
     btn.onclick=()=>{const o=el.classList.toggle('open'); lbl.textContent=o?'Згорнути':'Натисни для опису';};
+    renderTake(el.querySelector('.takewrap'), b.t);
+    renderReviews(el.querySelector('.revwrap'), b.t);
     box.appendChild(el);
   });
   step1.style.display='none'; step2.classList.add('on');
@@ -468,7 +1031,224 @@ function openCat(id){
 }
 function goHome(){step2.classList.remove('on'); step1.style.display='block'; window.scrollTo({top:0,behavior:'smooth'});}
 
+/* ---- панелі: показувати лише одну ---- */
+function hidePanelsExcept(keep){
+  ['aiPanel','propPanel','addPanel','statsPanel'].forEach(id=>{
+    if(id!==keep){const e=document.getElementById(id); if(e) e.style.display='none';}
+  });
+}
+
+/* ---- AI Помічник ---- */
+function initAI(){
+  const toggle=document.getElementById('aiToggle'), panel=document.getElementById('aiPanel');
+  toggle.onclick=()=>{
+    const show=panel.style.display==='none';
+    panel.style.display=show?'block':'none';
+    if(show){hidePanelsExcept('aiPanel'); document.getElementById('ai_q').focus();}
+  };
+  document.getElementById('ai_run').onclick=aiSubmit;
+  document.getElementById('ai_q').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))aiSubmit();});
+
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  const mic=document.getElementById('ai_mic');
+  if(!SR){ mic.style.display='none'; return; }
+  const rec=new SR(); rec.lang='uk-UA'; rec.interimResults=false; rec.maxAlternatives=1;
+  let on=false;
+  mic.onclick=()=>{ if(on){rec.stop();return;} try{rec.start();}catch(e){} };
+  rec.onstart=()=>{on=true;mic.classList.add('rec');};
+  rec.onend=()=>{on=false;mic.classList.remove('rec');};
+  rec.onerror=()=>{on=false;mic.classList.remove('rec');};
+  rec.onresult=(e)=>{ const txt=e.results[0][0].transcript; const q=document.getElementById('ai_q'); q.value=(q.value?q.value+' ':'')+txt; };
+}
+function aiSubmit(){
+  const q=document.getElementById('ai_q').value.trim();
+  const status=document.getElementById('ai_status'), res=document.getElementById('ai_res');
+  res.innerHTML='';
+  if(!q){status.textContent='Напишіть, що хочете прокачати чи прочитати.';return;}
+  if(!remote()){status.innerHTML='AI-помічник працює лише зі спільною базою. Треба налаштувати Google-скрипт і додати безкоштовний ключ Gemini — див. файл <b>AI-ПОМІЧНИК-Gemini.md</b>.';return;}
+  status.innerHTML='<span class="spinner"></span> Шукаю найкращі книги для тебе…';
+  const list=allBooks();
+  const compact=list.map((b,i)=>({i:i,t:b.t,c:(CATEGORIES.find(c=>c.id===b.cat)||{}).nm||b.cat,d:(b.about||'').slice(0,140)}));
+  fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'ai',query:q,books:compact})})
+    .then(r=>r.json())
+    .then(d=>{
+      if(d&&d.error&&(!d.picks||!d.picks.length)){status.innerHTML='⚠️ AI-сервіс повернув помилку:<br><span style="color:#ffb4b4">'+esc(d.error)+'</span>';return;}
+      renderAI((d&&d.picks)||[],list);
+    })
+    .catch(()=>{status.textContent='Не вдалося звʼязатися з AI. Перевір інтернет і спробуй ще раз.';});
+}
+function renderAI(picks,list){
+  const status=document.getElementById('ai_status'), res=document.getElementById('ai_res');
+  if(!picks.length){status.textContent='AI не знайшов чіткого збігу. Спробуй описати інакше — конкретніше, чого хочеш навчитися.';return;}
+  status.textContent='Ось що радить AI:';
+  const taken=loadTaken(); res.innerHTML='';
+  picks.forEach(p=>{
+    const b=list[p.i]; if(!b)return;
+    const col=COLORS[b.color]||{v:'#555',nm:''};
+    const rec=taken[b.t];
+    const busy=rec?`<span class="badge busy">● зайнята${rec.anon?'':' — '+esc(rec.name)}</span>`:`<span class="badge free">● вільна</span>`;
+    const shelf=col.nm?`<span class="badge"><span class="dot" style="background:${col.v}"></span>${col.nm} полиця</span>`:'';
+    const el=document.createElement('div'); el.className='aicard';
+    el.innerHTML=`<div class="spine" style="background:${col.v}"></div><div class="body">
+      <div class="ttl">${esc(b.t)}${b.a?` <span style="color:var(--muted);font-weight:400;font-size:13px">— ${esc(b.a)}</span>`:''}</div>
+      <div class="reason">${esc(p.reason||'')}</div>
+      <div class="meta">${busy}${shelf}</div></div>`;
+    res.appendChild(el);
+  });
+}
+
+/* ---- Книга тижня ---- */
+function renderFeatured(){
+  const box=document.getElementById('featured');
+  const all=allBooks();
+  if(!all.length){box.innerHTML='';return;}
+  const week=Math.floor(Date.now()/(7*24*3600*1000));
+  const b=all[week%all.length];
+  const col=COLORS[b.color]||{v:'#555',nm:''};
+  box.innerHTML=`<div class="featcard">
+    <div class="spine" style="background:${col.v}"></div>
+    <div class="featbody">
+      <div class="featlbl">📅 Книга тижня</div>
+      <div class="feattitle">${esc(b.t)}${b.a?` <span class="feataut">— ${esc(b.a)}</span>`:''}</div>
+      <div class="featabout">${esc(b.about||'')}</div>
+      <button class="featbtn">Дивитися в категорії →</button>
+    </div></div>`;
+  box.querySelector('.featbtn').onclick=()=>openCat(b.cat);
+}
+
+/* ---- Статистика ---- */
+function initStats(){
+  const t=document.getElementById('statsToggle'), p=document.getElementById('statsPanel');
+  t.onclick=()=>{
+    const show=p.style.display==='none';
+    p.style.display=show?'block':'none';
+    if(show){document.getElementById('aiPanel').style.display='none';document.getElementById('addPanel').style.display='none';renderStats();}
+  };
+}
+function renderStats(){
+  const p=document.getElementById('statsPanel');
+  const all=allBooks(); const taken=loadTaken();
+  const total=all.length, onloan=Object.keys(taken).length, free=Math.max(0,total-onloan);
+  const counts={}; all.forEach(b=>{counts[b.cat]=(counts[b.cat]||0)+1;});
+  const top=Object.keys(counts).map(k=>({k:k,n:counts[k]})).sort((a,b)=>b.n-a.n).slice(0,3)
+    .map(x=>`${(CATEGORIES.find(c=>c.id===x.k)||{}).nm||x.k} (${x.n})`).join(', ');
+  const weekAgo=Date.now()-7*24*3600*1000;
+  const retWeek=loadHistory().filter(h=>h.returnTs>weekAgo);
+  const fast=retWeek.filter(h=>h.tookTs>0).map(h=>({name:h.name,id:h.id,days:Math.max(1,Math.round((h.returnTs-h.tookTs)/86400000))})).sort((a,b)=>a.days-b.days)[0];
+  const fastHtml=fast?`<div class="statrow"><span>🏆 Найшвидший читач тижня</span><b>${esc(fast.name)} — «${esc(fast.id)}» за ${fast.days} дн.</b></div>`:'';
+
+  // рейтинг за кількістю взять (історія повернень + зараз на руках)
+  const takeCount={};
+  loadHistory().forEach(h=>{takeCount[h.id]=(takeCount[h.id]||0)+1;});
+  Object.keys(taken).forEach(id=>{takeCount[id]=(takeCount[id]||0)+1;});
+  const topTaken=Object.keys(takeCount).map(id=>({id:id,n:takeCount[id]})).sort((a,b)=>b.n-a.n).slice(0,5);
+  const topTakenHtml=topTaken.length
+    ? '<div class="stathdr">📚 Найпопулярніші (за кількістю взять)</div><ul class="toplist">'+
+      topTaken.map((x,i)=>`<li><span>${i+1}. ${esc(x.id)}</span><span>${x.n}×</span></li>`).join('')+'</ul>'
+    : '';
+  // рейтинг за зірками
+  const revs=loadReviews();
+  const rated=Object.keys(revs).map(id=>{const rs=revs[id]||[];const avg=rs.length?rs.reduce((a,r)=>a+(+r.stars||0),0)/rs.length:0;return{id:id,avg:avg,n:rs.length};})
+    .filter(x=>x.n>0).sort((a,b)=>b.avg-a.avg).slice(0,5);
+  const topRatedHtml=rated.length
+    ? '<div class="stathdr">⭐ Найвищий рейтинг</div><ul class="toplist">'+
+      rated.map(x=>`<li><span>${esc(x.id)}</span><span>${'★'.repeat(Math.round(x.avg))} ${x.avg.toFixed(1)}</span></li>`).join('')+'</ul>'
+    : '';
+
+  p.innerHTML=`
+    <div class="statgrid">
+      <div class="statbox"><div class="statn">${total}</div><div class="statl">книг усього</div></div>
+      <div class="statbox"><div class="statn">${free}</div><div class="statl">вільні</div></div>
+      <div class="statbox"><div class="statn">${onloan}</div><div class="statl">на руках</div></div>
+    </div>
+    <div class="statrow"><span>Найбільші категорії</span><b>${top||'—'}</b></div>
+    <div class="statrow"><span>Повернули за тиждень</span><b>${retWeek.length}</b></div>
+    ${fastHtml}
+    ${topTakenHtml}
+    ${topRatedHtml}`;
+}
+
 renderCats();
+renderFeatured();
+initAdd();
+initAI();
+initStats();
+initProp();
+renderBoard();
+refreshRemote();
+
+/* ---- Великодка: гладимо напис KONSORT ---- */
+(function(){
+  const wrap=document.getElementById('brandwrap'), kicker=document.getElementById('kicker');
+  const cat=document.getElementById('catimg');
+  if(!wrap||!kicker) return;
+  let catOk=false; if(cat){cat.addEventListener('load',()=>catOk=true); cat.addEventListener('error',()=>catOk=false);}
+  let pressed=false, started=false, seq=false, startTimer=null, lastBook=0, lastVib=0;
+  const catEmoji=['🐱','😺','😻','🐾','❤️','🧡','💛','💚','💙','💜','🩷'];
+  function makeBook(){
+    const el=document.createElement('div');
+    const size=32+Math.floor(Math.random()*18);
+    const fills=['#ffd400','#ffe271','#ffdf4d','#ffcf1a'];
+    const f=fills[Math.floor(Math.random()*fills.length)];
+    el.innerHTML='<svg width="'+size+'" height="'+Math.round(size*0.82)+'" viewBox="0 0 48 40" xmlns="http://www.w3.org/2000/svg">'
+      +'<path d="M24 8 C18 4,6 4,2 6 L2 34 C6 32,18 32,24 36 C30 32,42 32,46 34 L46 6 C42 4,30 4,24 8 Z" fill="'+f+'" stroke="#b38f00" stroke-width="1.6"/>'
+      +'<line x1="24" y1="8" x2="24" y2="36" stroke="#b38f00" stroke-width="1.6"/>'
+      +'<path d="M6 13H20M6 19H20M6 25H20M28 13H42M28 19H42M28 25H42" stroke="rgba(0,0,0,.25)" stroke-width="1.1" fill="none" stroke-linecap="round"/>'
+      +'</svg>';
+    return el;
+  }
+  function makeEmoji(){
+    const el=document.createElement('div');
+    el.textContent=catEmoji[Math.floor(Math.random()*catEmoji.length)];
+    el.style.fontSize=(18+Math.random()*12)+'px';
+    return el;
+  }
+  function spawnFly(x,y,type){
+    const el=(type==='cat')?makeEmoji():makeBook();
+    el.className='flybook';
+    el.style.left=(x-8)+'px'; el.style.top=(y-8)+'px';
+    document.body.appendChild(el);
+    const ang=Math.random()*Math.PI*2, dist=Math.max(innerWidth,innerHeight)*0.6;
+    requestAnimationFrame(()=>{
+      el.style.transform='translate('+(Math.cos(ang)*dist)+'px,'+(Math.sin(ang)*dist)+'px) rotate('+(Math.random()*540-270)+'deg)';
+      el.style.opacity='0';
+    });
+    setTimeout(()=>el.remove(),2200);
+  }
+  function pet(x,y){
+    const now=Date.now();
+    if(now-lastBook>70){lastBook=now; spawnFly(x,y, wrap.classList.contains('cat')?'cat':'book');}
+    if(now-lastVib>120){lastVib=now; if(navigator.vibrate)navigator.vibrate(12);}
+  }
+  function startCountdown(){
+    if(seq) return; seq=true;
+    let n=3; kicker.textContent='ще '+n+'…';
+    const iv=setInterval(()=>{
+      n--;
+      if(n>=1){kicker.textContent=n+'…'; if(navigator.vibrate)navigator.vibrate(18);}
+      else {clearInterval(iv); showCat();}
+    },800);
+  }
+  function showCat(){
+    if(catOk) wrap.classList.add('cat');
+    kicker.textContent='муур, мурр…';
+    if(navigator.vibrate) navigator.vibrate([120,60,120,60,220,80,120,60,200]);
+    setTimeout(()=>{
+      wrap.classList.remove('cat');
+      kicker.textContent='Бібліотека навичок';
+      started=false; seq=false;
+    },5000);
+  }
+  function down(x,y){pressed=true; if(!started&&!seq){started=true; startTimer=setTimeout(startCountdown,1000);} pet(x,y);}
+  function move(x,y){if(pressed) pet(x,y);}
+  function up(){pressed=false; if(started&&!seq){clearTimeout(startTimer); started=false;}}
+  wrap.addEventListener('pointerdown',e=>{try{wrap.setPointerCapture(e.pointerId);}catch(_){} down(e.clientX,e.clientY);});
+  wrap.addEventListener('pointermove',e=>move(e.clientX,e.clientY));
+  window.addEventListener('pointerup',up);
+  wrap.addEventListener('touchstart',e=>{const t=e.touches[0]; if(t) down(t.clientX,t.clientY);},{passive:true});
+  wrap.addEventListener('touchmove',e=>{const t=e.touches[0]; if(t) move(t.clientX,t.clientY);},{passive:true});
+  window.addEventListener('touchend',up);
+})();
 </script>
 </body>
 </html>
