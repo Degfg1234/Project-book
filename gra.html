@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>KONSORT — Ігрова перерва</title>
+<style>
+  :root{
+    --bg:#0e0e0f; --bg2:#161719; --card:#1a1c1f; --card2:#212429;
+    --txt:#f3f4f6; --muted:#9a9ea6; --line:#2c2f35;
+    --yellow:#ffd400; --yellow-d:#e6bf00; --yellow-soft:#ffe271;
+    --ink:#141414; --radius:16px; --shadow:0 12px 34px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:var(--bg);color:var(--txt);line-height:1.5;-webkit-font-smoothing:antialiased;padding:0 0 40px}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px}
+  a{color:inherit}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 0 6px}
+  .back{display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:var(--muted);font-weight:700;font-size:14px;
+    background:var(--card);border:1px solid var(--line);padding:9px 14px;border-radius:999px;transition:.14s}
+  .back:hover{color:var(--txt);border-color:var(--yellow)}
+  .brand{font-weight:800;letter-spacing:.18em;color:var(--yellow);font-size:14px}
+  h1{font-size:clamp(23px,6vw,34px);margin:.4em 0 .1em}
+  h1 b{color:var(--yellow)}
+  .sub{color:var(--muted);font-size:15px;margin:0 0 18px}
+  .hidden{display:none!important}
+
+  /* ---- хаб вибору ---- */
+  .choose{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+  @media(max-width:520px){.choose{grid-template-columns:1fr}}
+  .gcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;cursor:pointer;
+    transition:.15s;text-align:left;color:inherit;text-decoration:none;display:block}
+  .gcard:hover{transform:translateY(-3px);border-color:var(--yellow);box-shadow:var(--shadow)}
+  .gcard .ico{font-size:40px}
+  .gcard h3{margin:10px 0 6px;font-size:20px}
+  .gcard p{margin:0;color:var(--muted);font-size:13.5px}
+
+  .panelhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6px 0 14px;flex-wrap:wrap}
+  .btn{cursor:pointer;border:none;background:var(--yellow);color:var(--ink);font-weight:800;font-size:14px;
+    padding:10px 16px;border-radius:999px;transition:.12s}
+  .btn:hover{background:var(--yellow-soft)}
+  .btn.ghost{background:var(--card);color:var(--txt);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--yellow)}
+  .segrow{display:inline-flex;gap:4px;background:var(--card);border:1px solid var(--line);padding:4px;border-radius:999px}
+  .seg{border:none;background:transparent;color:var(--muted);font-weight:700;font-size:13px;padding:7px 12px;border-radius:999px;cursor:pointer}
+  .seg.on{background:var(--yellow);color:var(--ink)}
+  .hint{color:var(--muted);font-size:13px}
+
+  /* ---- Судоку ---- */
+  #sudokuBoard{--n:9;display:grid;grid-template-columns:repeat(9,1fr);gap:0;max-width:460px;margin:6px auto 0;
+    aspect-ratio:1/1;background:var(--line);border:3px solid var(--line);border-radius:10px;overflow:hidden;touch-action:manipulation}
+  .cell{position:relative;background:var(--bg2);display:flex;align-items:center;justify-content:center;
+    font-size:clamp(16px,5vw,24px);font-weight:700;color:var(--yellow-soft);cursor:pointer;user-select:none;
+    border-right:1px solid #23262b;border-bottom:1px solid #23262b}
+  .cell.given{color:var(--txt);cursor:default;background:var(--card)}
+  .cell.sel{background:#33372f;outline:2px solid var(--yellow);outline-offset:-2px;z-index:2}
+  .cell.err{color:#ff6b6b}
+  .cell.bR{border-right:2px solid #3d424a}
+  .cell.bB{border-bottom:2px solid #3d424a}
+  #padWrap{max-width:460px;margin:12px auto 0}
+  .pad{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .pad button{background:var(--card);border:1px solid var(--line);color:var(--txt);font-size:20px;font-weight:700;
+    padding:12px 0;border-radius:12px;cursor:pointer;transition:.12s}
+  .pad button:hover{border-color:var(--yellow)}
+  #suMsg{text-align:center;margin-top:12px;font-weight:700;min-height:22px}
+  .ok{color:#7bd88f}.bad{color:#ff8080}
+
+  /* ---- Гра-навантажувач ---- */
+  #fkStatus{display:flex;gap:16px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:14px;font-weight:700;margin-bottom:8px}
+  #fkStatus b{color:var(--yellow)}
+  #fkWrap{position:relative;max-width:100%;margin:0 auto;background:#0b0c0d;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  #fkCanvas{display:block;width:100%;height:auto;touch-action:none;background:#111}
+  #fkOverlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:rgba(10,10,12,.82);text-align:center;padding:20px;gap:12px}
+  #fkOverlay h3{margin:0;font-size:22px}#fkOverlay p{margin:0;color:var(--muted);font-size:14px;max-width:360px}
+  .fkhint{color:var(--muted);font-size:12.5px;text-align:center;margin-top:8px}
+  .dpad{display:none;grid-template-columns:repeat(3,60px);grid-template-rows:repeat(3,60px);gap:8px;justify-content:center;margin:14px auto 0}
+  .dpad button{background:var(--card);border:1px solid var(--line);color:var(--yellow);font-size:24px;border-radius:12px;cursor:pointer}
+  .dpad .c11{grid-column:2;grid-row:1}.dpad .c01{grid-column:1;grid-row:2}
+  .dpad .c21{grid-column:3;grid-row:2}.dpad .c12{grid-column:2;grid-row:3}
+  @media(hover:none) and (pointer:coarse){.dpad{display:grid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="index.html">← До бібліотеки</a>
+    <span class="brand">KONSORT</span>
+  </div>
+
+  <!-- ================= ХАБ ================= -->
+  <section id="hub">
+    <h1>Перерва на <b>гру</b> 🎮</h1>
+    <p class="sub">Розвантаж голову на 5 хвилин. Обери гру:</p>
+    <div class="choose">
+      <a class="gcard" id="pickSudoku">
+        <div class="ico">🧩</div>
+        <h3>Судоку</h3>
+        <p>Нове поле щоразу. 5 рівнів складності — від легкого до пекельного.</p>
+      </a>
+      <a class="gcard" id="pickForklift">
+        <div class="ico">🚜</div>
+        <h3>Навантажувач KONSORT</h3>
+        <p>Вози листи металу зі складу на відвантаження. Не дай чорним навантажувачам себе наздогнати!</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= СУДОКУ ================= -->
+  <section id="sudoku" class="hidden">
+    <div class="panelhead">
+      <button class="btn ghost" id="suBack">← Ігри</button>
+      <div class="segrow" id="suLevels">
+        <button class="seg" data-l="1">1</button>
+        <button class="seg" data-l="2">2</button>
+        <button class="seg on" data-l="3">3</button>
+        <button class="seg" data-l="4">4</button>
+        <button class="seg" data-l="5">5</button>
+      </div>
+      <button class="btn" id="suNew">Нова гра</button>
+    </div>
+    <p class="hint" style="text-align:center;margin:0 0 6px">Рівень складності: <b id="suLvlName">Середній</b></p>
+    <div id="sudokuBoard"></div>
+    <div id="padWrap">
+      <div class="pad" id="suPad">
+        <button data-v="1">1</button><button data-v="2">2</button><button data-v="3">3</button>
+        <button data-v="4">4</button><button data-v="5">5</button><button data-v="6">6</button>
+        <button data-v="7">7</button><button data-v="8">8</button><button data-v="9">9</button>
+        <button data-v="0">⌫</button>
+      </div>
+    </div>
+    <div id="suMsg"></div>
+  </section>
+
+  <!-- ================= НАВАНТАЖУВАЧ ================= -->
+  <section id="forklift" class="hidden">
+    <div class="panelhead">
+      <button class="btn ghost" id="fkBack">← Ігри</button>
+      <div id="fkStatus">
+        <span>Бали: <b id="fkScore">0</b></span>
+        <span>Рівень: <b id="fkLevel">1</b></span>
+        <span>Життя: <b id="fkLives">3</b></span>
+      </div>
+      <button class="btn" id="fkRestart">Заново</button>
+    </div>
+    <div id="fkWrap">
+      <canvas id="fkCanvas" width="644" height="420"></canvas>
+      <div id="fkOverlay">
+        <h3 id="fkOvTitle">🚜 Навантажувач KONSORT</h3>
+        <p id="fkOvText">Забери <b>лист металу</b> (сріблясту пляму), відвези на <b>зону відвантаження</b> (жовтий квадрат) — і так по колу. Тебе ганяють чорні навантажувачі, а на дорозі зʼявляються палети — обʼїжджай. Кермуй стрілками або WASD.</p>
+        <button class="btn" id="fkStart">Почати зміну</button>
+      </div>
+    </div>
+    <div class="dpad" id="fkPad">
+      <button class="c11" data-d="up">▲</button>
+      <button class="c01" data-d="left">◀</button>
+      <button class="c21" data-d="right">▶</button>
+      <button class="c12" data-d="down">▼</button>
+    </div>
+    <p class="fkhint">Керування: стрілки / WASD, на телефоні — кнопки внизу.</p>
+  </section>
+</div>
+
+<script>
+/* ==================================================================
+   Навігація між хабом і іграми
+   ================================================================== */
+const V={hub:document.getElementById('hub'),sudoku:document.getElementById('sudoku'),forklift:document.getElementById('forklift')};
+function show(name){for(const k in V)V[k].classList.toggle('hidden',k!==name);
+  if(name!=='forklift')FK.stop();}
+document.getElementById('pickSudoku').onclick=()=>{show('sudoku');SU.newGame();};
+document.getElementById('pickForklift').onclick=()=>{show('forklift');FK.arm();};
+document.getElementById('suBack').onclick=()=>show('hub');
+document.getElementById('fkBack').onclick=()=>show('hub');
+
+/* ==================================================================
+   СУДОКУ
+   ================================================================== */
+const SU=(function(){
+  const LVLS={1:{g:48,nm:'Легкий'},2:{g:40,nm:'Простий'},3:{g:32,nm:'Середній'},4:{g:27,nm:'Складний'},5:{g:23,nm:'Пекельний'}};
+  let level=3, solution=[], puzzle=[], given=[], sel=-1;
+  const boardEl=document.getElementById('sudokuBoard');
+  const msgEl=document.getElementById('suMsg');
+
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+  function canPlace(g,i,v){
+    const r=Math.floor(i/9),c=i%9;
+    for(let k=0;k<9;k++){if(g[r*9+k]===v)return false;if(g[k*9+c]===v)return false;}
+    const br=Math.floor(r/3)*3,bc=Math.floor(c/3)*3;
+    for(let dr=0;dr<3;dr++)for(let dc=0;dc<3;dc++)if(g[(br+dr)*9+(bc+dc)]===v)return false;
+    return true;
+  }
+  function fillFull(g){
+    const i=g.indexOf(0); if(i<0)return true;
+    const nums=shuffle([1,2,3,4,5,6,7,8,9]);
+    for(const v of nums){ if(canPlace(g,i,v)){g[i]=v; if(fillFull(g))return true; g[i]=0;} }
+    return false;
+  }
+  // рахує кількість розвʼязків, зупиняється на 2 (для унікальності)
+  function countSol(g,limit){
+    const i=g.indexOf(0);
+    if(i<0)return 1;
+    let cnt=0;
+    for(let v=1;v<=9;v++){
+      if(canPlace(g,i,v)){g[i]=v;cnt+=countSol(g,limit);g[i]=0;if(cnt>=limit)return cnt;}
+    }
+    return cnt;
+  }
+  function makePuzzle(){
+    const full=new Array(81).fill(0); fillFull(full); solution=full.slice();
+    const pz=full.slice();
+    const idx=shuffle([...Array(81).keys()]);
+    let removed=0, target=81-LVLS[level].g;
+    for(const i of idx){
+      if(removed>=target)break;
+      const bak=pz[i]; if(bak===0)continue;
+      pz[i]=0;
+      const g=pz.slice();
+      if(countSol(g,2)!==1){pz[i]=bak;} else {removed++;}
+    }
+    puzzle=pz; given=pz.map(v=>v!==0);
+  }
+  function render(){
+    boardEl.innerHTML='';
+    for(let i=0;i<81;i++){
+      const r=Math.floor(i/9),c=i%9;
+      const d=document.createElement('div');
+      d.className='cell'+(given[i]?' given':'')+((c%3===2&&c!==8)?' bR':'')+((r%3===2&&r!==8)?' bB':'');
+      d.dataset.i=i;
+      d.textContent=puzzle[i]?puzzle[i]:'';
+      if(i===sel)d.classList.add('sel');
+      boardEl.appendChild(d);
+    }
+  }
+  function selectCell(i){ if(given[i])return; sel=i; render(); }
+  function setVal(v){
+    if(sel<0||given[sel])return;
+    puzzle[sel]=v; msgEl.textContent=''; msgEl.className='';
+    render(); markErrors();
+    if(puzzle.every((x,i)=>x!==0)) check();
+  }
+  function markErrors(){
+    const cells=boardEl.children;
+    for(let i=0;i<81;i++){
+      cells[i].classList.remove('err');
+      const v=puzzle[i]; if(!v||given[i])continue;
+      // конфлікт із рядком/стовпцем/блоком
+      const g=puzzle.slice(); g[i]=0;
+      if(!canPlace(g,i,v))cells[i].classList.add('err');
+    }
+  }
+  function check(){
+    for(let i=0;i<81;i++){ if(puzzle[i]!==solution[i]){msgEl.textContent='Ще не все — є помилки. Поглянь на червоні клітинки.';msgEl.className='bad';return;} }
+    msgEl.textContent='🎉 Готово! Судоку розвʼязано.';msgEl.className='ok';
+  }
+  function newGame(){ msgEl.textContent=''; msgEl.className=''; sel=-1; makePuzzle(); render(); }
+
+  // події
+  boardEl.addEventListener('click',e=>{const c=e.target.closest('.cell');if(c)selectCell(+c.dataset.i);});
+  document.getElementById('suPad').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setVal(+b.dataset.v);});
+  document.addEventListener('keydown',e=>{
+    if(document.getElementById('sudoku').classList.contains('hidden'))return;
+    if(e.key>='1'&&e.key<='9')setVal(+e.key);
+    else if(e.key==='Backspace'||e.key==='Delete'||e.key==='0')setVal(0);
+    else if(sel>=0){
+      let r=Math.floor(sel/9),c=sel%9;
+      if(e.key==='ArrowUp'&&r>0)sel-=9; else if(e.key==='ArrowDown'&&r<8)sel+=9;
+      else if(e.key==='ArrowLeft'&&c>0)sel-=1; else if(e.key==='ArrowRight'&&c<8)sel+=1; else return;
+      render();
+    }
+  });
+  document.getElementById('suNew').onclick=newGame;
+  document.getElementById('suLevels').addEventListener('click',e=>{
+    const b=e.target.closest('.seg'); if(!b)return;
+    level=+b.dataset.l;
+    [...document.querySelectorAll('#suLevels .seg')].forEach(s=>s.classList.toggle('on',s===b));
+    document.getElementById('suLvlName').textContent=LVLS[level].nm;
+    newGame();
+  });
+  return {newGame};
+})();
+
+/* ==================================================================
+   НАВАНТАЖУВАЧ KONSORT (Pac-Man-подібна)
+   ================================================================== */
+const FK=(function(){
+  const canvas=document.getElementById('fkCanvas'), ctx=canvas.getContext('2d');
+  const overlay=document.getElementById('fkOverlay');
+  const elScore=document.getElementById('fkScore'), elLevel=document.getElementById('fkLevel'), elLives=document.getElementById('fkLives');
+  const ovTitle=document.getElementById('fkOvTitle'), ovText=document.getElementById('fkOvText');
+
+  // Склад-лабіринт: 0 — проїзд, 1 — стелаж (стіна)
+  let COLS=23, ROWS=15, T=28;
+  let MAP=[], ROADS=[];
+  function buildMap(){
+    MAP=[];
+    for(let r=0;r<ROWS;r++){
+      const row=[];
+      for(let c=0;c<COLS;c++){
+        let wall=(r===0||c===0||r===ROWS-1||c===COLS-1);
+        // стелажі: блоки 2x3 з проходами між ними (склад)
+        if(!wall && r>=2 && r<=ROWS-3 && c>=2 && c<=COLS-3){
+          if((r-2)%3<2 && (c-2)%4<3) wall=true;
+        }
+        row.push(wall?1:0);
+      }
+      MAP.push(row);
+    }
+    ROADS=[];
+    for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++)if(MAP[r][c]===0)ROADS.push({r,c});
+  }
+  const DIRS={up:{dr:-1,dc:0},down:{dr:1,dc:0},left:{dr:0,dc:-1},right:{dr:0,dc:1}};
+  function isRoad(r,c){return r>=0&&c>=0&&r<ROWS&&c<COLS&&MAP[r][c]===0;}
+  function randRoad(avoid){
+    let p; let tries=0;
+    do{ p=ROADS[Math.floor(Math.random()*ROADS.length)]; tries++; }
+    while(tries<200 && avoid && avoid.some(a=>a&&Math.abs(a.r-p.r)+Math.abs(a.c-p.c)<4));
+    return p;
+  }
+
+  let state='idle';           // idle|playing|dead|over
+  let score=0,level=1,lives=3,frame=0,raf=null;
+  let player=null,enemies=[],pallets=[];
+  let carrying=false, pickup=null, drop=null;
+
+  function mkEnt(r,c,speed,color){
+    return {cr:r,cc:c,tr:r,tc:c,px:c*T+T/2,py:r*T+T/2,dir:'left',nextDir:'left',speed:speed,baseSpeed:speed,color:color};
+  }
+  function resetPositions(){
+    player=mkEnt(Math.floor(ROWS/2),Math.floor(COLS/2),2.3,'#ffd400');
+    // вороги по кутах
+    const corners=[{r:1,c:1},{r:1,c:COLS-2},{r:ROWS-2,c:1},{r:ROWS-2,c:COLS-2}];
+    enemies=[];
+    const nE=Math.min(2+level,4);
+    for(let i=0;i<nE;i++){ const k=corners[i%4]; enemies.push(mkEnt(k.r,k.c,1.5+level*0.12,'#20242b')); }
+    pallets=[];
+    newPickup();
+  }
+  function newPickup(){
+    pickup=randRoad([player]); drop=null; carrying=false;
+  }
+  function makeDrop(){
+    drop=randRoad([player,pickup]);
+  }
+
+  function start(){
+    buildMap();
+    // адаптація розміру під екран
+    const maxW=Math.min(660, (document.querySelector('.wrap').clientWidth||660));
+    T=Math.floor(maxW/COLS);
+    canvas.width=COLS*T; canvas.height=ROWS*T;
+    score=0;level=1;lives=3;frame=0;state='playing';
+    resetPositions();
+    overlay.classList.add('hidden');
+    updateHUD();
+    loop();
+  }
+  function arm(){
+    stop(); state='idle';
+    overlay.classList.remove('hidden');
+    ovTitle.textContent='🚜 Навантажувач KONSORT';
+    ovText.innerHTML='Забери <b>лист металу</b> (сріблясту пляму), відвези на <b>зону відвантаження</b> (жовтий квадрат) — і так по колу. Тебе ганяють чорні навантажувачі, а на дорозі зʼявляються палети — обʼїжджай. Кермуй стрілками або WASD.';
+    // намалювати статичний фон під оверлеєм
+    buildMap();
+    const maxW=Math.min(660,(document.querySelector('.wrap').clientWidth||660));
+    T=Math.floor(maxW/COLS); canvas.width=COLS*T; canvas.height=ROWS*T;
+    drawMazeOnly();
+  }
+  function updateHUD(){elScore.textContent=score;elLevel.textContent=level;elLives.textContent=lives;}
+
+  function setDir(d){ if(!player)return; player.nextDir=d; }
+
+  function moveEnt(e){
+    // рух до центру цільової клітинки
+    const tx=e.tc*T+T/2, ty=e.tr*T+T/2;
+    const dx=tx-e.px, dy=ty-e.py;
+    const dist=Math.hypot(dx,dy);
+    if(dist<=e.speed){ e.px=tx;e.py=ty;e.cr=e.tr;e.cc=e.tc; return true; }
+    e.px+=dx/dist*e.speed; e.py+=dy/dist*e.speed; return false;
+  }
+  function palletAt(r,c){return pallets.some(p=>p.r===r&&p.c===c);}
+  function canGo(r,c){return isRoad(r,c)&&!palletAt(r,c);}
+
+  function stepPlayer(){
+    if(moveEnt(player)){
+      // у центрі клітинки — можна змінити напрям
+      const nd=DIRS[player.nextDir];
+      if(nd&&canGo(player.cr+nd.dr,player.cc+nd.dc))player.dir=player.nextDir;
+      const d=DIRS[player.dir];
+      if(d&&canGo(player.cr+d.dr,player.cc+d.dc)){player.tr=player.cr+d.dr;player.tc=player.cc+d.dc;}
+    }
+  }
+  function stepEnemy(e){
+    if(moveEnt(e)){
+      // вибір напряму: жадібно до гравця, іноді випадково
+      const opts=[];
+      for(const k in DIRS){const d=DIRS[k];
+        const nr=e.cr+d.dr,nc=e.cc+d.dc;
+        if(canGo(nr,nc)){
+          // не розвертатись на 180, якщо є вибір
+          opts.push({k,nr,nc,dist:Math.abs(nr-player.cr)+Math.abs(nc-player.cc)});
+        }
+      }
+      if(!opts.length){return;}
+      opts.sort((a,b)=>a.dist-b.dist);
+      let pick;
+      if(Math.random()<0.78)pick=opts[0]; else pick=opts[Math.floor(Math.random()*opts.length)];
+      e.dir=pick.k; e.tr=pick.nr; e.tc=pick.nc;
+    }
+  }
+
+  function maybePallet(){
+    // час від часу кидаємо палету на дорогу (не під гравцем/цілями), і прибираємо старі
+    pallets=pallets.filter(p=>p.life-->0);
+    const density=6+level; // менше — частіше
+    if(frame%(90-Math.min(50,level*6))===0 && pallets.length<density){
+      const p=randRoad([player,pickup,drop]);
+      if(p && !(Math.abs(p.r-player.cr)<=1&&Math.abs(p.c-player.cc)<=1))
+        pallets.push({r:p.r,c:p.c,life:(300+Math.random()*300)|0});
+    }
+  }
+
+  function tick(){
+    frame++;
+    stepPlayer();
+    enemies.forEach(stepEnemy);
+    maybePallet();
+
+    // забрати лист
+    if(!carrying && pickup && player.cr===pickup.r && player.cc===pickup.c){
+      carrying=true; pickup=null; makeDrop(); score+=15; updateHUD();
+    }
+    // відвантажити
+    if(carrying && drop && player.cr===drop.r && player.cc===drop.c){
+      score+=80; updateHUD();
+      // кожні 240 балів — новий рівень
+      if(score>=level*240){ level++; updateHUD(); resetPositions(); }
+      else newPickup();
+    }
+    // зіткнення з ворогом
+    for(const e of enemies){
+      if(Math.abs(e.px-player.px)<T*0.6 && Math.abs(e.py-player.py)<T*0.6){ loseLife(); return; }
+    }
+  }
+  function loseLife(){
+    lives--; updateHUD();
+    if(lives<=0){ gameOver(); return; }
+    // короткий стоп і повернення на місця
+    const keepScore=score, keepLevel=level, keepCarry=carrying, keepDrop=drop, keepPick=pickup;
+    resetPositions();
+    score=keepScore; level=keepLevel; carrying=keepCarry; drop=keepDrop; pickup=keepPick;
+    if(carrying && !drop) makeDrop();
+    if(!carrying && !pickup) newPickup();
+    updateHUD();
+  }
+  function gameOver(){
+    state='over'; stop();
+    overlay.classList.remove('hidden');
+    ovTitle.textContent='Зміну завершено 🏁';
+    ovText.innerHTML='Твій результат: <b>'+score+'</b> балів, рівень '+level+'.<br>Спробуй побити рекорд!';
+    document.getElementById('fkStart').textContent='Ще раз';
+  }
+
+  /* ---- рендер ---- */
+  function drawMazeOnly(){ drawWorld(true); }
+  function drawWorld(staticOnly){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    // підлога
+    ctx.fillStyle='#111317'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    // стелажі
+    for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
+      if(MAP[r][c]===1){
+        const x=c*T,y=r*T;
+        ctx.fillStyle='#1d2026'; ctx.fillRect(x+1,y+1,T-2,T-2);
+        ctx.fillStyle='#282c34'; ctx.fillRect(x+3,y+3,T-6,4);
+        ctx.fillRect(x+3,y+T-8,T-6,4);
+      } else {
+        // легка розмітка дороги
+        ctx.fillStyle='#0e1013'; ctx.fillRect(c*T,r*T,T,T);
+      }
+    }
+    if(staticOnly){ // показати ціль-приклад
+      return;
+    }
+    // палети (перепони)
+    for(const p of pallets){ drawPallet(p.r,p.c); }
+    // лист металу (pickup)
+    if(pickup) drawSheet(pickup.r,pickup.c);
+    // зона відвантаження (drop) — коли несемо
+    if(carrying && drop) drawDrop(drop.r,drop.c);
+    // вороги
+    enemies.forEach(e=>drawForklift(e,e.color,true));
+    // гравець
+    drawForklift(player,'#ffd400',false, carrying);
+  }
+  function cellXY(r,c){return {x:c*T+T/2,y:r*T+T/2};}
+  function drawSheet(r,c){const{x,y}=cellXY(r,c);
+    ctx.save();ctx.translate(x,y);
+    ctx.fillStyle='#c9d2dc';ctx.strokeStyle='#8a95a3';ctx.lineWidth=2;
+    ctx.beginPath();ctx.rect(-T*0.32,-T*0.2,T*0.64,T*0.4);ctx.fill();ctx.stroke();
+    ctx.strokeStyle='#aeb8c4';ctx.beginPath();ctx.moveTo(-T*0.32,-T*0.06);ctx.lineTo(T*0.32,-T*0.06);
+    ctx.moveTo(-T*0.32,T*0.08);ctx.lineTo(T*0.32,T*0.08);ctx.stroke();
+    ctx.restore();
+  }
+  function drawDrop(r,c){const x=c*T,y=r*T;
+    ctx.save();
+    ctx.fillStyle='rgba(255,212,0,.16)';ctx.fillRect(x+2,y+2,T-4,T-4);
+    ctx.strokeStyle='#ffd400';ctx.setLineDash([4,3]);ctx.lineWidth=2;ctx.strokeRect(x+3,y+3,T-6,T-6);
+    ctx.setLineDash([]);ctx.fillStyle='#ffd400';ctx.font='bold '+(T*0.5)+'px sans-serif';
+    ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('⤓',x+T/2,y+T/2);
+    ctx.restore();
+  }
+  function drawPallet(r,c){const x=c*T,y=r*T;
+    ctx.save();ctx.fillStyle='#7a5326';ctx.fillRect(x+3,y+3,T-6,T-6);
+    ctx.fillStyle='#93662f';for(let i=0;i<3;i++)ctx.fillRect(x+4,y+5+i*(T-10)/3,T-8,3);
+    ctx.strokeStyle='#5e3f1c';ctx.strokeRect(x+3,y+3,T-6,T-6);ctx.restore();
+  }
+  function drawForklift(e,color,isEnemy,carry){
+    const ang={up:-Math.PI/2,down:Math.PI/2,left:Math.PI,right:0}[e.dir]||0;
+    ctx.save();ctx.translate(e.px,e.py);ctx.rotate(ang);
+    // корпус
+    ctx.fillStyle=color;ctx.strokeStyle=isEnemy?'#0a0b0d':'#8a7400';ctx.lineWidth=2;
+    ctx.beginPath();ctx.rect(-T*0.30,-T*0.24,T*0.5,T*0.48);ctx.fill();ctx.stroke();
+    // вила спереду
+    ctx.fillStyle=isEnemy?'#3a3f47':'#d9be32';
+    ctx.fillRect(T*0.20,-T*0.22,T*0.22,T*0.07);
+    ctx.fillRect(T*0.20, T*0.15,T*0.22,T*0.07);
+    // кабіна
+    ctx.fillStyle=isEnemy?'#31363f':'#3a3320';
+    ctx.fillRect(-T*0.22,-T*0.15,T*0.2,T*0.3);
+    // якщо несе лист
+    if(carry){ctx.fillStyle='#c9d2dc';ctx.fillRect(T*0.24,-T*0.18,T*0.06,T*0.36);}
+    ctx.restore();
+  }
+
+  function loop(){
+    if(state!=='playing')return;
+    tick();
+    if(state==='playing')drawWorld(false);
+    raf=requestAnimationFrame(loop);
+  }
+  function stop(){ if(raf){cancelAnimationFrame(raf);raf=null;} if(state==='playing')state='idle'; }
+
+  // керування
+  const keymap={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',w:'up',s:'down',a:'left',d:'right',W:'up',S:'down',A:'left',D:'right',ц:'up',ы:'down',ф:'left',в:'right',і:'down'};
+  document.addEventListener('keydown',e=>{
+    if(document.getElementById('forklift').classList.contains('hidden'))return;
+    const d=keymap[e.key]; if(d){e.preventDefault();setDir(d);}
+  });
+  document.getElementById('fkPad').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setDir(b.dataset.d);});
+  // свайпи
+  let tsx=0,tsy=0;
+  canvas.addEventListener('touchstart',e=>{const t=e.touches[0];tsx=t.clientX;tsy=t.clientY;},{passive:true});
+  canvas.addEventListener('touchend',e=>{const t=e.changedTouches[0];const dx=t.clientX-tsx,dy=t.clientY-tsy;
+    if(Math.abs(dx)<14&&Math.abs(dy)<14)return;
+    if(Math.abs(dx)>Math.abs(dy))setDir(dx>0?'right':'left');else setDir(dy>0?'down':'up');},{passive:true});
+
+  document.getElementById('fkStart').onclick=start;
+  document.getElementById('fkRestart').onclick=start;
+
+  return {arm,stop,start};
+})();
+</script>
+</body>
+</html>
